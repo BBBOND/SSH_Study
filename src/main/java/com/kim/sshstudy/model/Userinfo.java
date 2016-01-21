@@ -1,14 +1,16 @@
 package com.kim.sshstudy.model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
 
 /**
  * Created by 伟阳 on 2016/1/21.
  */
 @Entity
-@Table(name = "userinfo", schema = "", catalog = "sshstudy")
-public class UserinfoEntity {
+public class Userinfo {
     private String id;
     private String name;
     private String pwd;
@@ -70,14 +72,14 @@ public class UserinfoEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserinfoEntity that = (UserinfoEntity) o;
+        Userinfo userinfo = (Userinfo) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (pwd != null ? !pwd.equals(that.pwd) : that.pwd != null) return false;
-        if (createdatatime != null ? !createdatatime.equals(that.createdatatime) : that.createdatatime != null)
+        if (id != null ? !id.equals(userinfo.id) : userinfo.id != null) return false;
+        if (name != null ? !name.equals(userinfo.name) : userinfo.name != null) return false;
+        if (pwd != null ? !pwd.equals(userinfo.pwd) : userinfo.pwd != null) return false;
+        if (createdatatime != null ? !createdatatime.equals(userinfo.createdatatime) : userinfo.createdatatime != null)
             return false;
-        if (modifydatatime != null ? !modifydatatime.equals(that.modifydatatime) : that.modifydatatime != null)
+        if (modifydatatime != null ? !modifydatatime.equals(userinfo.modifydatatime) : userinfo.modifydatatime != null)
             return false;
 
         return true;
