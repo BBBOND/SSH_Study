@@ -30,7 +30,9 @@
     <!--对于WebLogic，Orion，OC4J此属性应该设置成true-->
     <constant name="struts.dispatcher.parametersWorkaround" value="true"/>
 
-    <!--<package name="basePackage" extends="struts-default"/>-->
+    <package name="basePackage" extends="struts-default">
+
+    </package>
 
 
 </struts>
