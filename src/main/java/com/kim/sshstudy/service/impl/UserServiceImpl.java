@@ -1,6 +1,7 @@
 package com.kim.sshstudy.service.impl;
 
 import com.kim.sshstudy.service.UserServiceI;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,7 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserServiceI {
+
+    private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
+
     public void test() {
-        System.out.println("test----->>");
+        logger.info("---->userService do test");
     }
 }

@@ -2,13 +2,17 @@
   <artifact type="exploded-war" name="SSH_Study:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/SSH_Study_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="SSH_Study/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="SSH_Study" />
         </element>
-        <element id="directory" name="lib" />
+        <element id="directory" name="lib">
+          <element id="library" level="application" name="lib" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.12" />
+        </element>
       </element>
+      <element id="javaee-facet-resources" facet="SSH_Study/web/Web" />
     </root>
   </artifact>
 </component>
