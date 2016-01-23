@@ -1,15 +1,13 @@
 package com.kim.sshstudy.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by 伟阳 on 2016/1/21.
  */
 @Entity
+@Table(name = "userinfo",schema = "sshstudy")
 public class Userinfo {
     private String id;
     private String name;

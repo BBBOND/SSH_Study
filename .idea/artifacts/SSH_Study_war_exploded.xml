@@ -10,6 +10,11 @@
           <element id="library" level="application" name="lib" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.12" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.29" />
+          <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.16" />
+          <element id="library" level="module" name="Maven: com.alibaba:jconsole:1.8.0" module-name="SSH_Study" />
+          <element id="library" level="module" name="Maven: com.alibaba:tools:1.8.0" module-name="SSH_Study" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.8" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="SSH_Study/web/Web" />

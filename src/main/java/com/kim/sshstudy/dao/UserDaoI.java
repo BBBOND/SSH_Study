@@ -1,14 +1,12 @@
-package com.kim.sshstudy.service;
+package com.kim.sshstudy.dao;
 
 import com.kim.sshstudy.model.Userinfo;
 
 import java.io.Serializable;
 
 /**
- * Created by 伟阳 on 2016/1/21.
+ * Created by 伟阳 on 2016/1/23.
  */
-public interface UserServiceI {
-    public void test();
-
+public interface UserDaoI {
     public Serializable save(Userinfo userinfo);
 }
