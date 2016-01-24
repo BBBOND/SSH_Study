@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by 伟阳 on 2016/1/21.
@@ -24,18 +26,27 @@ public class UserServiceImpl implements UserServiceI {
         logger.info("---->userService do test");
     }
 
-    private UserDaoI userDaoI;
+    private UserDaoI userDao;
 
-    public UserDaoI getUserDaoI() {
-        return userDaoI;
+    public UserDaoI getUserDao() {
+        return userDao;
     }
 
     @Autowired
-    public void setUserDaoI(UserDaoI userDaoI) {
-        this.userDaoI = userDaoI;
+    public void setUserDao(UserDaoI userDao) {
+        this.userDao = userDao;
     }
 
     public Serializable save(Userinfo userinfo) {
-        return userDaoI.save(userinfo);
+        return userDao.save(userinfo);
+    }
+
+    public Serializable add(String name, String pwd) {
+        Userinfo userinfo = new Userinfo();
+        userinfo.setId(UUID.randomUUID().toString());
+        userinfo.setName(name);
+        userinfo.setPwd(pwd);
+        userinfo.setCreatedatatime(new Date());
+        return userDao.save(userinfo);
     }
 }

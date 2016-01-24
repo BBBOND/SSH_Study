@@ -11,4 +11,6 @@ public interface UserServiceI {
     public void test();
 
     public Serializable save(Userinfo userinfo);
+
+    public Serializable add(String name, String pwd);
 }
