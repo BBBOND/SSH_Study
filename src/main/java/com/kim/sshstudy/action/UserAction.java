@@ -1,5 +1,6 @@
 package com.kim.sshstudy.action;
 
+import com.kim.sshstudy.model.Userinfo;
 import com.kim.sshstudy.service.UserServiceI;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -9,6 +10,9 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by 伟阳 on 2016/1/23.
@@ -43,5 +47,13 @@ public class UserAction {
         userServiceI.test();
     }
 
+    public void addUser(){
+        Userinfo userinfo = new Userinfo();
+        userinfo.setId(UUID.randomUUID().toString());
+        userinfo.setName("cy");
+        userinfo.setPwd("123456");
+        userinfo.setCreatedatatime(new Date());
+        userServiceI.save(userinfo);
+    }
 
 }
