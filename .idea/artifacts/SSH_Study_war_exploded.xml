@@ -16,6 +16,7 @@
           <element id="library" level="module" name="Maven: com.alibaba:tools:1.8.0" module-name="SSH_Study" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.8" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.7" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="SSH_Study/web/Web" />

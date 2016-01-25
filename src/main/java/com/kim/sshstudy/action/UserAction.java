@@ -61,16 +61,19 @@ public class UserAction {
     public void register() {
         String name = ServletActionContext.getRequest().getParameter("name");
         String pwd = ServletActionContext.getRequest().getParameter("pwd");
-        Map<String,Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
         try {
             userServiceI.add(name, pwd);
-            map.put("success",true);
-            map.put("msg","注册成功!");
+            map.put("success", true);
+            map.put("msg", "注册成功!");
         } catch (Exception e) {
-            map.put("success",false);
-            map.put("msg","注册失败!");
+            e.printStackTrace();
+            map.put("success", false);
+            map.put("msg", "注册失败!");
         }
         try {
+//            可设置过滤器解决
+            ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
             ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
             ServletActionContext.getResponse().getWriter().write(JSON.toJSONString(map));
         } catch (IOException e) {

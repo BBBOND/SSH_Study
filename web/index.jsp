@@ -17,9 +17,44 @@
     <link rel="stylesheet" href="js/jquery-easyui-1.4.4/themes/metro/easyui.css" type="text/css">
     <link rel="stylesheet" href="js/jquery-easyui-1.4.4/themes/icon.css" type="text/css">
     <script type="text/javascript">
-        $(function(){
-
-                });
+        //使用form表单方式提交
+                /*function register(){
+                        $('#register_register_form').form('submit',{
+                                url:'${pageContext.request.contextPath}/userAction!register.action',
+                                success:function(data){
+                                        var obj = jQuery.parseJSON(data);
+                                        if(obj.success) {
+                                                $('#register_register_dialog').dialog('close');
+                                                }
+                                        $.messager.show({
+                                                title:'提示',
+                                                msg:obj.msg,
+                                                showType:'show'
+                                                });
+                                        }
+                                });
+                        }*/
+                //使用ajax方式提交
+                /*function register(){
+                        if ($('#register_register_form').form('validate')){
+                                $.ajax({
+                                        url:'${pageContext.request.contextPath}/userAction!register.action',
+                                        data:$('#register_register_form').serialize(),
+                                        dataType:'json',
+                                        success:function(obj){
+                                                //var obj = $.parseJSON(data);
+                                                if(obj.success) {
+                                                        $('#register_register_dialog').dialog('close');
+                                                        }
+                                                $.messager.show({
+                                                        title:'提示',
+                                                        msg:obj.msg,
+                                                        showType:'show'
+                                                        });
+                                                }
+                                        });
+                                }
+                        }*/
     </script>
 </head>
 <body class="easyui-layout">
@@ -52,80 +87,10 @@
         </table>
     </div>
 </div>
-<div id="index_login_Dialog" class="easyui-dialog" title="登陆" style="width:230px;height:150px;padding:10px"
-     data-options="
-                modal:true,
-                closable:false,
-                buttons: [{
-                    text:'注册',
-                    handler:function(){
-                        $('#index_register_dialog').dialog('open');
-                    }
-                },{
-                    text:'登陆',
-                    handler:function(){
 
-                    }
-                }]
-            ">
-    <table>
-        <tr>
-            <th>登陆名</th>
-            <td><input class="easyui-validatebox" data-options="required:true"/></td>
-        </tr>
-        <tr>
-            <th>密码</th>
-            <td><input class="easyui-validatebox" data-options="required:true"/></td>
-        </tr>
-    </table>
-</div>
+<jsp:include page="user/login.jsp"/>
+<jsp:include page="user/register.jsp"/>
 
-<div id="index_register_dialog" class="easyui-dialog" title="注册" style="width:240px;height:180px;padding:10px"
-     data-options="
-                modal:true,
-                closed:true,
-                buttons: [{
-                    text:'注册',
-                    handler:function(){
-                        $('#index_register_form').form({
-                            url:'${pageContext.request.contextPath}/userAction!register.action',
-                            success:function(data){
-                                var obj = jQuery.parseJSON(data);
-                                if(obj.success) {
-                                    $('#index_register_dialog').dialog('close');
-                                }
-                                $.messager.show({
-                                    title:'提示',
-                                    msg:obj.msg,
-                                    showType:'show'
-                                });
-                            }
-                        });
-                        $('#index_register_form').submit();
-                    }
-                },{
-                    text:'取消',
-                    handler:function(){
-                        $('#index_register_dialog').dialog('close');
-                    }
-                }]
-            ">
-    <form id="index_register_form" method="post">
-        <table>
-            <tr>
-                <th>登陆名</th>
-                <td><input name="name" class="easyui-validatebox" data-options="required:true,missingMessage:'登陆名必填'"/></td>
-            </tr>
-            <tr>
-                <th>密码</th>
-                <td><input name="pwd" type="password" class="easyui-validatebox" data-options="required:true,missingMessage:'密码必填'"/></td>
-            </tr>
-            <tr>
-                <th>重复密码</th>
-                <td><input name="rePwd" type="password" class="easyui-validatebox" data-options="required:true,missingMessage:'重复密码必填',validType:'eqPassword[\'#index_register_form input[name=pwd]\']'"/></td>
-            </tr>
-        </table>
-    </form>
-</div>
+
 </body>
 </html>
