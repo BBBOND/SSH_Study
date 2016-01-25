@@ -1,16 +1,15 @@
 package com.kim.sshstudy.action;
 
-import com.alibaba.fastjson.JSON;
 import com.kim.sshstudy.model.Userinfo;
+import com.kim.sshstudy.pageModel.User;
 import com.kim.sshstudy.service.UserServiceI;
+import com.opensymphony.xwork2.ModelDriven;
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,18 +22,44 @@ import java.util.UUID;
 @ParentPackage("basePackage")
 @Namespace("/")
 @Action(value = "userAction")
-public class UserAction {
+public class UserAction extends BaseAction implements ModelDriven<User> {
 
-    private UserServiceI userServiceI;
+    User user = new User();
 
-    public UserServiceI getUserServiceI() {
-        return userServiceI;
+    public User getModel() {
+        return user;
+    }
+
+    private UserServiceI userService;
+
+    public UserServiceI getUserService() {
+        return userService;
     }
 
     @Autowired
-    public void setUserServiceI(UserServiceI userServiceI) {
-        this.userServiceI = userServiceI;
+    public void setUserService(UserServiceI userService) {
+        this.userService = userService;
     }
+
+//    获取方法二
+    /*private String name;
+    private String pwd;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }*/
 
     private static final Logger logger = Logger.getLogger(UserAction.class);
 
@@ -46,7 +71,7 @@ public class UserAction {
         //不用手动获取，直接使用get、set方法上注解@Autowired
         //ApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
         //UserServiceI userServiceI = (UserServiceI) ac.getBean("userService");
-        userServiceI.test();
+        userService.test();
     }
 
     public void addUser() {
@@ -55,15 +80,16 @@ public class UserAction {
         userinfo.setName("cy");
         userinfo.setPwd("123456");
         userinfo.setCreatedatatime(new Date());
-        userServiceI.save(userinfo);
+        userService.save(userinfo);
     }
 
     public void register() {
-        String name = ServletActionContext.getRequest().getParameter("name");
-        String pwd = ServletActionContext.getRequest().getParameter("pwd");
+//        获取方法一
+//        String name = ServletActionContext.getRequest().getParameter("name");
+//        String pwd = ServletActionContext.getRequest().getParameter("pwd");
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            userServiceI.add(name, pwd);
+            userService.add(user.getName(), user.getPwd());
             map.put("success", true);
             map.put("msg", "注册成功!");
         } catch (Exception e) {
@@ -71,14 +97,7 @@ public class UserAction {
             map.put("success", false);
             map.put("msg", "注册失败!");
         }
-        try {
-//            可设置过滤器解决
-            ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
-            ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
-            ServletActionContext.getResponse().getWriter().write(JSON.toJSONString(map));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        super.writeJson(map);
     }
 
 }

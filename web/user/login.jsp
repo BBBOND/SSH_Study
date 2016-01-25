@@ -6,16 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div id="login_login_dialog" class="easyui-dialog" title="登陆" style="width:230px;height:150px;padding:10px"
+<div id="login_login_loginDialog" class="easyui-dialog" title="登陆" style="width:230px;height:150px;padding:10px"
      data-options="
                 modal:true,
                 closable:false,
                 buttons: [{
                     text:'注册',
                     handler:function(){
-                        $('#register_register_form input').val('');
-                        $('#register_register_form').form('load',{name:'',pwd:'',rePwd:''});
-                        $('#user_register_dialog').dialog('open');
+                        $('#register_register_registerForm input').val('');
+                        $('#register_register_registerForm').form('load',{name:'',pwd:'',rePwd:''});
+                        $('#user_register_registerDialog').dialog('open');
                     }
                 },{
                     text:'登陆',

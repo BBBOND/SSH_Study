@@ -19,12 +19,12 @@
     <script type="text/javascript">
         //使用form表单方式提交
                 /*function register(){
-                        $('#register_register_form').form('submit',{
+                        $('#register_register_registerForm').form('submit',{
                                 url:'${pageContext.request.contextPath}/userAction!register.action',
                                 success:function(data){
                                         var obj = jQuery.parseJSON(data);
                                         if(obj.success) {
-                                                $('#register_register_dialog').dialog('close');
+                                                $('#user_register_registerDialog').dialog('close');
                                                 }
                                         $.messager.show({
                                                 title:'提示',
@@ -36,15 +36,15 @@
                         }*/
                 //使用ajax方式提交
                 /*function register(){
-                        if ($('#register_register_form').form('validate')){
+                        if ($('#register_register_registerForm').form('validate')){
                                 $.ajax({
                                         url:'${pageContext.request.contextPath}/userAction!register.action',
-                                        data:$('#register_register_form').serialize(),
+                                        data:$('#register_register_registerForm').serialize(),
                                         dataType:'json',
                                         success:function(obj){
                                                 //var obj = $.parseJSON(data);
                                                 if(obj.success) {
-                                                        $('#register_register_dialog').dialog('close');
+                                                        $('#user_register_registerDialog').dialog('close');
                                                         }
                                                 $.messager.show({
                                                         title:'提示',

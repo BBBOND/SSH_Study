@@ -7,6 +7,5 @@ import java.io.Serializable;
 /**
  * Created by 伟阳 on 2016/1/23.
  */
-public interface UserDaoI {
-    public Serializable save(Userinfo userinfo);
+public interface UserDaoI extends BaseDaoI<Userinfo> {
 }
