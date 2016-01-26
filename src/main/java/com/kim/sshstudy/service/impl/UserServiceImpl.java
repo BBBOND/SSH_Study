@@ -4,6 +4,7 @@ import com.kim.sshstudy.dao.UserDaoI;
 import com.kim.sshstudy.model.Userinfo;
 import com.kim.sshstudy.pageModel.User;
 import com.kim.sshstudy.service.UserServiceI;
+import com.kim.sshstudy.utils.Md5AndShaEncrypt;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +46,11 @@ public class UserServiceImpl implements UserServiceI {
 
     public Serializable addUser(User user) {
         Userinfo userinfo = new Userinfo();
-        BeanUtils.copyProperties(user,userinfo,new String[]{"id","createdatatime"});//字符数组是不复制的项
+        BeanUtils.copyProperties(user,userinfo,new String[]{"id","pwd","createdatatime"});//字符数组是不复制的项
 //        userinfo.setName(user.getName());
 //        userinfo.setPwd(user.getPwd());
         userinfo.setId(UUID.randomUUID().toString());
+        userinfo.setPwd(Md5AndShaEncrypt.encrypt(user.getPwd()));
         userinfo.setCreatedatatime(new Date());
         return userDao.save(userinfo);
     }
