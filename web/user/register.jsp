@@ -6,6 +6,30 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script type="text/javascript">
+    $(function(){
+            $('#register_register_registerForm').form({
+                    url:'${pageContext.request.contextPath}/userAction!register.action',
+                    success:function(data){
+                            var obj = jQuery.parseJSON(data);
+                            if(obj.success) {
+                                    $('#user_register_registerDialog').dialog('close');
+                                    }
+                            $.messager.show({
+                                    title:'提示',
+                                    msg:obj.msg,
+                                    showType:'show'
+                                    });
+                            }
+                    });
+            $('#register_register_registerForm input').bind('keyup',function(event){
+                    if (event.keyCode == '13'){
+                            $('#register_register_registerForm').submit();
+                            }
+                    });
+            });
+
+</script>
 <div id="user_register_registerDialog" class="easyui-dialog" title="注册" style="width:240px;height:180px;padding:10px"
      data-options="
                 modal:true,
@@ -13,20 +37,7 @@
                 buttons: [{
                     text:'注册',
                     handler:function(){
-                        $('#register_register_registerForm').form('submit',{
-                                url:'${pageContext.request.contextPath}/userAction!register.action',
-                                success:function(data){
-                                        var obj = jQuery.parseJSON(data);
-                                        if(obj.success) {
-                                                $('#user_register_registerDialog').dialog('close');
-                                                }
-                                        $.messager.show({
-                                                title:'提示',
-                                                msg:obj.msg,
-                                                showType:'show'
-                                                });
-                                        }
-                                });
+                        $('#register_register_registerForm').submit();
                     }
                 },{
                     text:'取消',
