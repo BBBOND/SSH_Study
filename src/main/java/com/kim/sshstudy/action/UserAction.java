@@ -19,7 +19,7 @@ import java.util.UUID;
  * Created by 伟阳 on 2016/1/23.
  */
 
-@ParentPackage("basePackage")
+//@ParentPackage("basePackage")
 @Namespace("/")
 @Action(value = "userAction")
 public class UserAction extends BaseAction implements ModelDriven<User> {
@@ -89,7 +89,7 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 //        String pwd = ServletActionContext.getRequest().getParameter("pwd");
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            userService.add(user.getName(), user.getPwd());
+            userService.addUser(user);
             map.put("success", true);
             map.put("msg", "注册成功!");
         } catch (Exception e) {
