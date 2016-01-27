@@ -52,11 +52,11 @@
         <table>
             <tr>
                 <th>登陆名</th>
-                <td><input name="name" class="easyui-validatebox" data-options="required:true,missingMessage:'登陆名必填'"/></td>
+                <td><input name="name" autofocus class="easyui-validatebox" data-options="required:true,missingMessage:'登陆名必填'"/></td>
             </tr>
             <tr>
                 <th>密码</th>
-                <td><input name="pwd" class="easyui-validatebox" data-options="required:true,missingMessage:'密码必填'"/></td>
+                <td><input name="pwd" type="password" class="easyui-validatebox" data-options="required:true,missingMessage:'密码必填'"/></td>
             </tr>
         </table>
     </form>

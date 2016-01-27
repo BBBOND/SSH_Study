@@ -14,4 +14,6 @@ public interface UserServiceI {
     public Serializable save(Userinfo userinfo);
 
     public Serializable addUser(User user);
+
+    public User login(User user);
 }

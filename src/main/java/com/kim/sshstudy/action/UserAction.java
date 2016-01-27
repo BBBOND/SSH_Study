@@ -1,18 +1,16 @@
 package com.kim.sshstudy.action;
 
 import com.kim.sshstudy.model.Userinfo;
+import com.kim.sshstudy.pageModel.Json;
 import com.kim.sshstudy.pageModel.User;
 import com.kim.sshstudy.service.UserServiceI;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -87,17 +85,36 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 //        获取方法一
 //        String name = ServletActionContext.getRequest().getParameter("name");
 //        String pwd = ServletActionContext.getRequest().getParameter("pwd");
-        Map<String, Object> map = new HashMap<String, Object>();
+        Json json = new Json();
         try {
             userService.addUser(user);
-            map.put("success", true);
-            map.put("msg", "注册成功!");
+            json.setSuccess(true);
+            json.setMsg("注册成功!");
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("success", false);
-            map.put("msg", "注册失败!");
+            json.setSuccess(false);
+            json.setMsg("注册失败!");
         }
-        super.writeJson(map);
+        super.writeJson(json);
     }
 
+    public void login() {
+        Json json = new Json();
+        try {
+            User u = userService.login(user);
+            if (u != null) {
+                json.setSuccess(true);
+                json.setMsg("登陆成功!");
+            } else {
+                json.setSuccess(false);
+                json.setMsg("登陆失败,登录名或密码错误!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            json.setSuccess(false);
+            json.setMsg("登陆失败,服务器内部错误!");
+        } finally {
+            super.writeJson(json);
+        }
+    }
 }

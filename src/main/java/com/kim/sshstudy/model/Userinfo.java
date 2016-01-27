@@ -1,14 +1,15 @@
 package com.kim.sshstudy.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by 伟阳 on 2016/1/21.
  */
 @Entity
-@Table(name = "userinfo",schema = "sshstudy")
-public class Userinfo {
+@Table(name = "userinfo", schema = "sshstudy")
+public class Userinfo implements Serializable {
     private String id;
     private String name;
     private String pwd;
