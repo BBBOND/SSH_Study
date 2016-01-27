@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script type="text/javascript">
     $(function(){
-            $('#register_register_registerForm').form({
+            $('#user_register_registerForm').form({
                     url:'${pageContext.request.contextPath}/userAction!register.action',
                     success:function(data){
                             var obj = jQuery.parseJSON(data);
@@ -22,9 +22,9 @@
                                     });
                             }
                     });
-            $('#register_register_registerForm input').bind('keyup',function(event){
+            $('#user_register_registerForm input').bind('keyup',function(event){
                     if (event.keyCode == '13'){
-                            $('#register_register_registerForm').submit();
+                            $('#user_register_registerForm').submit();
                             }
                     });
             });
@@ -37,7 +37,7 @@
                 buttons: [{
                     text:'注册',
                     handler:function(){
-                        $('#register_register_registerForm').submit();
+                        $('#user_register_registerForm').submit();
                     }
                 },{
                     text:'取消',
@@ -46,7 +46,7 @@
                     }
                 }]
             ">
-    <form id="register_register_registerForm" method="post">
+    <form id="user_register_registerForm" method="post">
         <table>
             <tr>
                 <th>登陆名</th>
@@ -58,7 +58,7 @@
             </tr>
             <tr>
                 <th>重复密码</th>
-                <td><input type="password" class="easyui-validatebox" data-options="required:true,missingMessage:'重复密码必填',validType:'eqPassword[\'#register_register_registerForm input[name=pwd]\']'"/></td>
+                <td><input type="password" class="easyui-validatebox" data-options="required:true,missingMessage:'重复密码必填',validType:'eqPassword[\'#user_register_registerForm input[name=pwd]\']'"/></td>
             </tr>
         </table>
     </form>
