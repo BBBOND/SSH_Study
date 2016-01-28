@@ -5,10 +5,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by 伟阳 on 2016/1/21.
+ * Created by 伟阳 on 2016/1/28.
  */
 @Entity
-@Table(name = "userinfo", schema = "sshstudy")
+@Table(name = "menu", schema = "sshstudy")
 public class Userinfo implements Serializable {
     private String id;
     private String name;
@@ -17,7 +17,7 @@ public class Userinfo implements Serializable {
     private Date modifydatatime;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", unique = true, nullable = false, length = 36)
     public String getId() {
         return id;
     }
@@ -27,7 +27,7 @@ public class Userinfo implements Serializable {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", unique = true, nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -37,7 +37,7 @@ public class Userinfo implements Serializable {
     }
 
     @Basic
-    @Column(name = "pwd")
+    @Column(name = "pwd", nullable = false, length = 64)
     public String getPwd() {
         return pwd;
     }
@@ -47,7 +47,7 @@ public class Userinfo implements Serializable {
     }
 
     @Basic
-    @Column(name = "createdatatime")
+    @Column(name = "createdatatime", nullable = false)
     public Date getCreatedatatime() {
         return createdatatime;
     }
@@ -76,10 +76,8 @@ public class Userinfo implements Serializable {
         if (id != null ? !id.equals(userinfo.id) : userinfo.id != null) return false;
         if (name != null ? !name.equals(userinfo.name) : userinfo.name != null) return false;
         if (pwd != null ? !pwd.equals(userinfo.pwd) : userinfo.pwd != null) return false;
-        if (createdatatime != null ? !createdatatime.equals(userinfo.createdatatime) : userinfo.createdatatime != null)
-            return false;
-        if (modifydatatime != null ? !modifydatatime.equals(userinfo.modifydatatime) : userinfo.modifydatatime != null)
-            return false;
+        if (createdatatime != null ? !createdatatime.equals(userinfo.createdatatime) : userinfo.createdatatime != null) return false;
+        if (modifydatatime != null ? !modifydatatime.equals(userinfo.modifydatatime) : userinfo.modifydatatime != null) return false;
 
         return true;
     }

@@ -59,12 +59,9 @@ public class UserServiceImpl implements UserServiceI {
     }
 
     public User login(User user) {
-
-
 //        Userinfo userinfo = userDao.get("from Userinfo u where u.name='" + user.getName() + "' and u.pwd='" + Md5AndShaEncrypt.encrypt(user.getPwd()) + "'");
 //        无法运行(原因antlr版本太低)
 //        Userinfo userinfo = userDao.get("FROM Userinfo u where u.name = ? and u.pwd = ?", new Object[]{user.getName(), Md5AndShaEncrypt.encrypt(user.getPwd())});
-
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("name", user.getName());
         map.put("pwd", Md5AndShaEncrypt.encrypt(user.getPwd()));
