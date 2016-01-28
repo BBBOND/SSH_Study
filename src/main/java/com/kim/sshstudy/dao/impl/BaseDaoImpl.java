@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by 伟阳 on 2016/1/25.
@@ -59,14 +57,23 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
 
     public T get(String hql, Map<String, Object> params) {
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+//        使用sql语句
+//        SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(hql);
+
+//        jdk1.5+
         if (params != null && !params.isEmpty()) {
-            Set<String> keySet = params.keySet();
-            Iterator<String> keys = keySet.iterator();
-            while (keys.hasNext()) {
-                String key = keys.next();
-                query.setParameter(key, params.get(key));
-                key = null;
+            for (Object o : params.keySet()) {
+                query.setParameter((String) o, params.get(o));
             }
+
+//            jdk1.4-
+//            Set<String> keySet = params.keySet();
+//            Iterator<String> keys = keySet.iterator();
+//            while (keys.hasNext()) {
+//                String key = keys.next();
+//                query.setParameter(key, params.get(key));
+//                key = null;
+//            }
         }
         List<T> list = query.list();
         if (list != null && list.size() > 0) {
