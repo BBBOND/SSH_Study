@@ -1,15 +1,14 @@
 package com.kim.sshstudy.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by 伟阳 on 2016/1/28.
+ * Created by 伟阳 on 2016/1/29.
  */
 @Entity
-@Table(name = "menu", schema = "sshstudy")
-public class Userinfo implements Serializable {
+@Table(name = "t_user", schema = "", catalog = "sshstudy")
+public class TUser {
     private String id;
     private String name;
     private String pwd;
@@ -71,13 +70,13 @@ public class Userinfo implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Userinfo userinfo = (Userinfo) o;
+        TUser tUser = (TUser) o;
 
-        if (id != null ? !id.equals(userinfo.id) : userinfo.id != null) return false;
-        if (name != null ? !name.equals(userinfo.name) : userinfo.name != null) return false;
-        if (pwd != null ? !pwd.equals(userinfo.pwd) : userinfo.pwd != null) return false;
-        if (createdatatime != null ? !createdatatime.equals(userinfo.createdatatime) : userinfo.createdatatime != null) return false;
-        if (modifydatatime != null ? !modifydatatime.equals(userinfo.modifydatatime) : userinfo.modifydatatime != null) return false;
+        if (id != null ? !id.equals(tUser.id) : tUser.id != null) return false;
+        if (name != null ? !name.equals(tUser.name) : tUser.name != null) return false;
+        if (pwd != null ? !pwd.equals(tUser.pwd) : tUser.pwd != null) return false;
+        if (createdatatime != null ? !createdatatime.equals(tUser.createdatatime) : tUser.createdatatime != null) return false;
+        if (modifydatatime != null ? !modifydatatime.equals(tUser.modifydatatime) : tUser.modifydatatime != null) return false;
 
         return true;
     }

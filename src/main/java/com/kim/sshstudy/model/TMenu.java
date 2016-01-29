@@ -1,37 +1,35 @@
 package com.kim.sshstudy.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by 伟阳 on 2016/1/28.
+ * Created by 伟阳 on 2016/1/29.
  */
 @Entity
-@Table(name = "menu", schema = "sshstudy")
-public class Menu implements Serializable {
+@Table(name = "t_menu", schema = "", catalog = "sshstudy")
+public class TMenu {
     private String id;
-    private Menu menu; //父节点
+    private TMenu tMenu; //父节点
     private String menuName;
     private String menuIcon;
     private String url;
-    private Set<Menu> menus = new HashSet<Menu>();
+    private Set<TMenu> tMenus = new HashSet<TMenu>();
 
-    public Menu() {
+    public TMenu() {
     }
 
-    public Menu(String id) {
+    public TMenu(String id) {
         this.id = id;
     }
 
-    public Menu(Menu menu, String id, String menuName, String menuIcon, String url, Set<Menu> menus) {
-        this.menu = menu;
+    public TMenu(String id, TMenu tMenu, String menuName, String menuIcon, String url) {
         this.id = id;
+        this.tMenu = tMenu;
         this.menuName = menuName;
         this.menuIcon = menuIcon;
         this.url = url;
-        this.menus = menus;
     }
 
     @Id
@@ -46,16 +44,16 @@ public class Menu implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pid")
-    public Menu getMenu() {
-        return menu;
+    public TMenu gettMenu() {
+        return tMenu;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void settMenu(TMenu tMenu) {
+        this.tMenu = tMenu;
     }
 
     @Basic
-    @Column(name = "menu_name", length = 100)
+    @Column(name = "menu_name", unique = true, length = 100)
     public String getMenuName() {
         return menuName;
     }
@@ -84,13 +82,13 @@ public class Menu implements Serializable {
         this.url = url;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "menu")
-    public Set<Menu> getMenus() {
-        return menus;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "tMenu")
+    public Set<TMenu> gettMenus() {
+        return tMenus;
     }
 
-    public void setMenus(Set<Menu> menus) {
-        this.menus = menus;
+    public void settMenus(Set<TMenu> tMenus) {
+        this.tMenus = tMenus;
     }
 
     @Override
@@ -98,12 +96,12 @@ public class Menu implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Menu menu = (Menu) o;
+        TMenu tMenu = (TMenu) o;
 
-        if (id != null ? !id.equals(menu.id) : menu.id != null) return false;
-        if (menuName != null ? !menuName.equals(menu.menuName) : menu.menuName != null) return false;
-        if (menuIcon != null ? !menuIcon.equals(menu.menuIcon) : menu.menuIcon != null) return false;
-        if (url != null ? !url.equals(menu.url) : menu.url != null) return false;
+        if (id != null ? !id.equals(tMenu.id) : tMenu.id != null) return false;
+        if (menuName != null ? !menuName.equals(tMenu.menuName) : tMenu.menuName != null) return false;
+        if (menuIcon != null ? !menuIcon.equals(tMenu.menuIcon) : tMenu.menuIcon != null) return false;
+        if (url != null ? !url.equals(tMenu.url) : tMenu.url != null) return false;
 
         return true;
     }
