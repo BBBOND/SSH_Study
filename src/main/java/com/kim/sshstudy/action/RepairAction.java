@@ -1,6 +1,5 @@
 package com.kim.sshstudy.action;
 
-import com.kim.sshstudy.service.MenuServiceI;
 import com.kim.sshstudy.service.RepairServiceI;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;

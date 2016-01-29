@@ -12,8 +12,8 @@ import java.util.Set;
 public class TMenu {
     private String id;
     private TMenu tMenu; //父节点
-    private String menuName;
-    private String menuIcon;
+    private String text;
+    private String iconCls;
     private String url;
     private Set<TMenu> tMenus = new HashSet<TMenu>();
 
@@ -24,12 +24,13 @@ public class TMenu {
         this.id = id;
     }
 
-    public TMenu(String id, TMenu tMenu, String menuName, String menuIcon, String url) {
+    public TMenu(String id, TMenu tMenu, String text, String iconCls, String url, Set<TMenu> tMenus) {
         this.id = id;
         this.tMenu = tMenu;
-        this.menuName = menuName;
-        this.menuIcon = menuIcon;
+        this.text = text;
+        this.iconCls = iconCls;
         this.url = url;
+        this.tMenus = tMenus;
     }
 
     @Id
@@ -53,27 +54,27 @@ public class TMenu {
     }
 
     @Basic
-    @Column(name = "menu_name", unique = true, length = 100)
-    public String getMenuName() {
-        return menuName;
+    @Column(name = "text", unique = true, length = 100)
+    public String getText() {
+        return text;
     }
 
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
-    }
-
-    @Basic
-    @Column(name = "menu_icon", length = 50)
-    public String getMenuIcon() {
-        return menuIcon;
-    }
-
-    public void setMenuIcon(String menuIcon) {
-        this.menuIcon = menuIcon;
+    public void setText(String text) {
+        this.text = text;
     }
 
     @Basic
-    @Column(name = "url", length = 200)
+    @Column(name = "iconCls", length = 50)
+    public String getIconCls() {
+        return iconCls;
+    }
+
+    public void setIconCls(String iconCls) {
+        this.iconCls = iconCls;
+    }
+
+    @Basic
+    @Column(name = "url", nullable = false, length = 200)
     public String getUrl() {
         return url;
     }
@@ -96,22 +97,25 @@ public class TMenu {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TMenu tMenu = (TMenu) o;
+        TMenu tMenu1 = (TMenu) o;
 
-        if (id != null ? !id.equals(tMenu.id) : tMenu.id != null) return false;
-        if (menuName != null ? !menuName.equals(tMenu.menuName) : tMenu.menuName != null) return false;
-        if (menuIcon != null ? !menuIcon.equals(tMenu.menuIcon) : tMenu.menuIcon != null) return false;
-        if (url != null ? !url.equals(tMenu.url) : tMenu.url != null) return false;
+        if (!id.equals(tMenu1.id)) return false;
+        if (!tMenu.equals(tMenu1.tMenu)) return false;
+        if (!text.equals(tMenu1.text)) return false;
+        if (!iconCls.equals(tMenu1.iconCls)) return false;
+        if (!url.equals(tMenu1.url)) return false;
+        return tMenus.equals(tMenu1.tMenus);
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (menuName != null ? menuName.hashCode() : 0);
-        result = 31 * result + (menuIcon != null ? menuIcon.hashCode() : 0);
-        result = 31 * result + (url != null ? url.hashCode() : 0);
+        int result = id.hashCode();
+        result = 31 * result + tMenu.hashCode();
+        result = 31 * result + text.hashCode();
+        result = 31 * result + iconCls.hashCode();
+        result = 31 * result + url.hashCode();
+        result = 31 * result + tMenus.hashCode();
         return result;
     }
 }

@@ -11,8 +11,10 @@
         <property name="hibernate.c3p0.max_size">20</property>
         <property name="hibernate.c3p0.timeout">1800</property>
         <property name="hibernate.c3p0.max_statements">50</property>
-        <mapping class="com.kim.sshstudy.model.Menu"/>
-        <mapping class="com.kim.sshstudy.model.Userinfo"/>
+        <mapping class="com.kim.sshstudy.model.Tmenu"/>
+        <mapping class="com.kim.sshstudy.model.Tuser"/>
+        <mapping class="com.kim.sshstudy.model.TMenu"/>
+        <mapping class="com.kim.sshstudy.model.TUser"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

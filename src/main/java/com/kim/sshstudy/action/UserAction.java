@@ -1,6 +1,6 @@
 package com.kim.sshstudy.action;
 
-import com.kim.sshstudy.model.Userinfo;
+import com.kim.sshstudy.model.TUser;
 import com.kim.sshstudy.pageModel.Json;
 import com.kim.sshstudy.pageModel.User;
 import com.kim.sshstudy.service.UserServiceI;
@@ -73,12 +73,12 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
     }
 
     public void addUser() {
-        Userinfo userinfo = new Userinfo();
-        userinfo.setId(UUID.randomUUID().toString());
-        userinfo.setName("cy");
-        userinfo.setPwd("123456");
-        userinfo.setCreatedatatime(new Date());
-        userService.save(userinfo);
+        TUser tuser = new TUser();
+        tuser.setId(UUID.randomUUID().toString());
+        tuser.setName("cy");
+        tuser.setPwd("123456");
+        tuser.setCreatedatatime(new Date());
+        userService.save(tuser);
     }
 
     public void register() {

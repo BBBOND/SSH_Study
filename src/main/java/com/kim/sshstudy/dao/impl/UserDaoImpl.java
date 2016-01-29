@@ -1,7 +1,7 @@
 package com.kim.sshstudy.dao.impl;
 
 import com.kim.sshstudy.dao.UserDaoI;
-import com.kim.sshstudy.model.Userinfo;
+import com.kim.sshstudy.model.TUser;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository("userDao")
-public class UserDaoImpl extends BaseDaoImpl<Userinfo> implements UserDaoI {
+public class UserDaoImpl extends BaseDaoImpl<TUser> implements UserDaoI {
 }

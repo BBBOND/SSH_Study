@@ -58,16 +58,15 @@
     </script>
 </head>
 <body class="easyui-layout">
-<div data-options="region:'west',split:false" title="导航栏" style="width:100px;">
-    <div class="easyui-accordion" data-options="fit:true,border:false">
-        <div title="Title1" data-options="selected:true" style="padding:10px;">
-            content1
-        </div>
-        <div title="Title2" style="padding:10px;">
-            content2
-        </div>
-        <div title="Title3" style="padding:10px">
-            content3
+<div data-options="region:'west'" style="width:150px;">
+    <div class="easyui-panel" data-options="title:'导航导航',fit:true,border:false">
+        <div class="easyui-accordion" data-options="fit:true,border:false">
+            <div title="系统菜单" data-options="selected:true">
+                <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath}/menuAction!tree.action'"></ul>
+            </div>
+            <div title="Title2" style="padding:10px;">
+                content2
+            </div>
         </div>
     </div>
 </div>

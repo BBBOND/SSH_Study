@@ -144,4 +144,8 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
         }
         return (Long) query.uniqueResult();
     }
+
+    public void flush() {
+        getCurrentSession().flush();
+    }
 }

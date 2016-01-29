@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>Context Menu on DataGrid</h2>
-	<p>Right click on the header of DataGrid to display context menu.</p>
+	<p>Right click on the header of DataGrid to display context tmenu.</p>
 	<div style="margin:20px 0;"></div>
 	<table id="dg"></table>
 	<script type="text/javascript">
@@ -38,7 +38,7 @@
 					if (!cmenu){
 						createColumnMenu();
 					}
-					cmenu.menu('show', {
+					cmenu.tmenu('show', {
 						left:e.pageX,
 						top:e.pageY
 					});
@@ -48,17 +48,17 @@
 		var cmenu;
 		function createColumnMenu(){
 			cmenu = $('<div/>').appendTo('body');
-			cmenu.menu({
+			cmenu.tmenu({
 				onClick: function(item){
 					if (item.iconCls == 'icon-ok'){
 						$('#dg').datagrid('hideColumn', item.name);
-						cmenu.menu('setIcon', {
+						cmenu.tmenu('setIcon', {
 							target: item.target,
 							iconCls: 'icon-empty'
 						});
 					} else {
 						$('#dg').datagrid('showColumn', item.name);
-						cmenu.menu('setIcon', {
+						cmenu.tmenu('setIcon', {
 							target: item.target,
 							iconCls: 'icon-ok'
 						});
@@ -69,7 +69,7 @@
 			for(var i=0; i<fields.length; i++){
 				var field = fields[i];
 				var col = $('#dg').datagrid('getColumnOption', field);
-				cmenu.menu('appendItem', {
+				cmenu.tmenu('appendItem', {
 					text: col.title,
 					name: field,
 					iconCls: 'icon-ok'

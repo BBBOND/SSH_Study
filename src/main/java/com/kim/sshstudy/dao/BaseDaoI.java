@@ -35,4 +35,6 @@ public interface BaseDaoI<T> {
 
     public Long count(String hql, Map<String, Object> params);
 
+    public void flush();
+
 }

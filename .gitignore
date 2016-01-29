@@ -12,7 +12,7 @@
 *.iml
 *.patch
 .idea/
-src/test/
+#src/test/
 
 # Others
 META-INF/

@@ -1,6 +1,6 @@
 package com.kim.sshstudy;
 
-import com.kim.sshstudy.model.Userinfo;
+import com.kim.sshstudy.model.TUser;
 import com.kim.sshstudy.service.UserServiceI;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -18,11 +18,11 @@ public class TestHibernate {
     public void test() {
         ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml", "classpath:spring-hibernate.xml");
         UserServiceI userService = (UserServiceI) ac.getBean("userService");
-        Userinfo userinfo = new Userinfo();
-        userinfo.setId(UUID.randomUUID().toString());
-        userinfo.setName("jwy");
-        userinfo.setPwd("123456");
-        userinfo.setCreatedatatime(new Date());
-        userService.save(userinfo);
+        TUser tuser = new TUser();
+        tuser.setId(UUID.randomUUID().toString());
+        tuser.setName("jwy");
+        tuser.setPwd("123456");
+        tuser.setCreatedatatime(new Date());
+        userService.save(tuser);
     }
 }

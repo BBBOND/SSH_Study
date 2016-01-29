@@ -26,6 +26,18 @@
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
 
+    <!--修复数据库监听器-->
+    <listener>
+        <listener-class>com.kim.sshstudy.listener.RepairListener</listener-class>
+    </listener>
+
+
+
+
+
+
+
+
     <!--openSessionInView配置（设置hibernate关联web端）注意:一定要在所有filter之前-->
     <filter>
         <filter-name>openSessionInView</filter-name>

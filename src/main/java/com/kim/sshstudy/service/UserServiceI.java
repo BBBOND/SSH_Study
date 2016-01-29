@@ -1,6 +1,6 @@
 package com.kim.sshstudy.service;
 
-import com.kim.sshstudy.model.Userinfo;
+import com.kim.sshstudy.model.TUser;
 import com.kim.sshstudy.pageModel.User;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 public interface UserServiceI {
     public void test();
 
-    public Serializable save(Userinfo userinfo);
+    public Serializable save(TUser tuser);
 
     public Serializable addUser(User user);
 

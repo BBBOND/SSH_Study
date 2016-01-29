@@ -11,8 +11,8 @@ public class Menu implements Serializable {
     private String pMenuName;
 
     private String id;
-    private String menuName;
-    private String menuIcon;
+    private String text;
+    private String iconCls;
     private String url;
 
     public String getPid() {
@@ -39,20 +39,20 @@ public class Menu implements Serializable {
         this.id = id;
     }
 
-    public String getMenuName() {
-        return menuName;
+    public String getText() {
+        return text;
     }
 
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getMenuIcon() {
-        return menuIcon;
+    public String getIconCls() {
+        return iconCls;
     }
 
-    public void setMenuIcon(String menuIcon) {
-        this.menuIcon = menuIcon;
+    public void setIconCls(String iconCls) {
+        this.iconCls = iconCls;
     }
 
     public String getUrl() {

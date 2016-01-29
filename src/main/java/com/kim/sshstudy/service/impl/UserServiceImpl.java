@@ -1,7 +1,7 @@
 package com.kim.sshstudy.service.impl;
 
 import com.kim.sshstudy.dao.UserDaoI;
-import com.kim.sshstudy.model.Userinfo;
+import com.kim.sshstudy.model.TUser;
 import com.kim.sshstudy.pageModel.User;
 import com.kim.sshstudy.service.UserServiceI;
 import com.kim.sshstudy.utils.Md5AndShaEncrypt;
@@ -43,33 +43,33 @@ public class UserServiceImpl implements UserServiceI {
         this.userDao = userDao;
     }
 
-    public Serializable save(Userinfo userinfo) {
-        return userDao.save(userinfo);
+    public Serializable save(TUser tuser) {
+        return userDao.save(tuser);
     }
 
     public Serializable addUser(User user) {
-        Userinfo userinfo = new Userinfo();
-        BeanUtils.copyProperties(user, userinfo, new String[]{"id", "pwd", "createdatatime"});//字符数组是不复制的项
-//        userinfo.setName(user.getName());
-//        userinfo.setPwd(user.getPwd());
-        userinfo.setId(UUID.randomUUID().toString());
-        userinfo.setPwd(Md5AndShaEncrypt.encrypt(user.getPwd()));
-        userinfo.setCreatedatatime(new Date());
-        return userDao.save(userinfo);
+        TUser tuser = new TUser();
+        BeanUtils.copyProperties(user, tuser, new String[]{"id", "pwd", "createdatatime"});//字符数组是不复制的项
+//        tuser.setName(user.getName());
+//        tuser.setPwd(user.getPwd());
+        tuser.setId(UUID.randomUUID().toString());
+        tuser.setPwd(Md5AndShaEncrypt.encrypt(user.getPwd()));
+        tuser.setCreatedatatime(new Date());
+        return userDao.save(tuser);
     }
 
     public User login(User user) {
-//        Userinfo userinfo = userDao.get("from Userinfo u where u.name='" + user.getName() + "' and u.pwd='" + Md5AndShaEncrypt.encrypt(user.getPwd()) + "'");
+//        Tuser tuser = userDao.get("from TUser u where u.name='" + user.getName() + "' and u.pwd='" + Md5AndShaEncrypt.encrypt(user.getPwd()) + "'");
 //        无法运行(原因antlr版本太低)
-//        Userinfo userinfo = userDao.get("FROM Userinfo u where u.name = ? and u.pwd = ?", new Object[]{user.getName(), Md5AndShaEncrypt.encrypt(user.getPwd())});
+//        Tuser tuser = userDao.get("FROM TUser u where u.name = ? and u.pwd = ?", new Object[]{user.getName(), Md5AndShaEncrypt.encrypt(user.getPwd())});
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("name", user.getName());
         map.put("pwd", Md5AndShaEncrypt.encrypt(user.getPwd()));
-        Userinfo userinfo = userDao.get("FROM Userinfo u where u.name=:name and u.pwd=:pwd", map);
+        TUser tuser = userDao.get("FROM TUser u where u.name=:name and u.pwd=:pwd", map);
 
-        if (userinfo != null) {
+        if (tuser != null) {
             User u = new User();
-            BeanUtils.copyProperties(userinfo, u);
+            BeanUtils.copyProperties(tuser, u);
             return u;
         } else {
             return null;
