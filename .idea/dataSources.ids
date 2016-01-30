@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - sshstudy@localhost" uuid="ae2f50dd-94d6-42c2-84bb-473950244f7f">
+  <data-source name="MySQL - sshstudy@localhost" uuid="caf57c7a-e331-4536-8278-e496ba22f64e">
     <database-info product="MySQL" version="5.0.96-community-nt" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
@@ -10,9 +10,9 @@
     <table name="t_menu" schema="" catalog="sshstudy" type="TABLE">
       <column name="id" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
       <column name="pid" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
-      <column name="menu_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
-      <column name="menu_icon" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
-      <column name="url" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="text" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="iconCls" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="url" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="pid" columns="pid" ref-table="t_menu" ref-schema="" ref-catalog="sshstudy" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>

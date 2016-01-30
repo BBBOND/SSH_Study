@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class Menu implements Serializable {
 
+    private String state;
     private String pid;
     private String pMenuName;
 
@@ -14,6 +15,14 @@ public class Menu implements Serializable {
     private String text;
     private String iconCls;
     private String url;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public String getPid() {
         return pid;

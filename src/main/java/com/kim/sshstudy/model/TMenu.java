@@ -1,17 +1,18 @@
 package com.kim.sshstudy.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by 伟阳 on 2016/1/29.
+ * Created by 伟阳 on 2016/1/30.
  */
 @Entity
 @Table(name = "t_menu", schema = "", catalog = "sshstudy")
-public class TMenu {
+public class TMenu implements Serializable {
     private String id;
-    private TMenu tMenu; //父节点
+    private TMenu tMenu;
     private String text;
     private String iconCls;
     private String url;
@@ -34,7 +35,7 @@ public class TMenu {
     }
 
     @Id
-    @Column(name = "id", unique = true, nullable = false, length = 36)
+    @Column(name = "id", nullable = false, length = 36)
     public String getId() {
         return id;
     }
@@ -43,7 +44,7 @@ public class TMenu {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pid")
     public TMenu gettMenu() {
         return tMenu;
@@ -54,7 +55,7 @@ public class TMenu {
     }
 
     @Basic
-    @Column(name = "text", unique = true, length = 100)
+    @Column(name = "text", nullable = false, length = 100)
     public String getText() {
         return text;
     }
@@ -64,7 +65,7 @@ public class TMenu {
     }
 
     @Basic
-    @Column(name = "iconCls", length = 50)
+    @Column(name = "iconCls", nullable = true, length = 50)
     public String getIconCls() {
         return iconCls;
     }
@@ -83,7 +84,7 @@ public class TMenu {
         this.url = url;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "tMenu")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tMenu")
     public Set<TMenu> gettMenus() {
         return tMenus;
     }
@@ -97,25 +98,22 @@ public class TMenu {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TMenu tMenu1 = (TMenu) o;
+        TMenu tMenu = (TMenu) o;
 
-        if (!id.equals(tMenu1.id)) return false;
-        if (!tMenu.equals(tMenu1.tMenu)) return false;
-        if (!text.equals(tMenu1.text)) return false;
-        if (!iconCls.equals(tMenu1.iconCls)) return false;
-        if (!url.equals(tMenu1.url)) return false;
-        return tMenus.equals(tMenu1.tMenus);
+        if (id != null ? !id.equals(tMenu.id) : tMenu.id != null) return false;
+        if (text != null ? !text.equals(tMenu.text) : tMenu.text != null) return false;
+        if (iconCls != null ? !iconCls.equals(tMenu.iconCls) : tMenu.iconCls != null) return false;
+        if (url != null ? !url.equals(tMenu.url) : tMenu.url != null) return false;
 
+        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + tMenu.hashCode();
-        result = 31 * result + text.hashCode();
-        result = 31 * result + iconCls.hashCode();
-        result = 31 * result + url.hashCode();
-        result = 31 * result + tMenus.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (iconCls != null ? iconCls.hashCode() : 0);
+        result = 31 * result + (url != null ? url.hashCode() : 0);
         return result;
     }
 }

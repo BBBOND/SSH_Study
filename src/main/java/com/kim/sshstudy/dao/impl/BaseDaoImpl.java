@@ -102,7 +102,12 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
 
     public List<T> find(String hql) {
         Query query = getCurrentSession().createQuery(hql);
-        return query.list();
+        List<T> list = query.list();
+        if (list != null && list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
     }
 
     public List<T> find(String hql, Map<String, Object> params) {
@@ -112,12 +117,22 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
                 query.setParameter((String) o, params.get(o));
             }
         }
-        return query.list();
+        List<T> list = query.list();
+        if (list != null && list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
     }
 
     public List<T> find(String hql, int page, int rows) {
         Query query = getCurrentSession().createQuery(hql);
-        return query.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
+        List<T> list = query.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
+        if (list != null && list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
     }
 
     public List<T> find(String hql, Map<String, Object> params, int page, int rows) {
@@ -127,7 +142,12 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
                 query.setParameter((String) o, params.get(o));
             }
         }
-        return query.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
+        List<T> list = query.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
+        if (list != null && list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
     }
 
     public Long count(String hql) {

@@ -1,14 +1,15 @@
 package com.kim.sshstudy.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by 伟阳 on 2016/1/29.
+ * Created by 伟阳 on 2016/1/30.
  */
 @Entity
 @Table(name = "t_user", schema = "", catalog = "sshstudy")
-public class TUser {
+public class TUser implements Serializable {
     private String id;
     private String name;
     private String pwd;
@@ -16,7 +17,7 @@ public class TUser {
     private Date modifydatatime;
 
     @Id
-    @Column(name = "id", unique = true, nullable = false, length = 36)
+    @Column(name = "id", nullable = false, length = 36)
     public String getId() {
         return id;
     }
@@ -26,7 +27,7 @@ public class TUser {
     }
 
     @Basic
-    @Column(name = "name", unique = true, nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -56,7 +57,7 @@ public class TUser {
     }
 
     @Basic
-    @Column(name = "modifydatatime")
+    @Column(name = "modifydatatime", nullable = true)
     public Date getModifydatatime() {
         return modifydatatime;
     }
