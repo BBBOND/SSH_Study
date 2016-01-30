@@ -11,5 +11,7 @@ public interface MenuServiceI {
 
     public void save(Menu menu);
 
-    public List<Menu> getTree(String id);
+    public List<Menu> getTreeNode(String id);
+
+    public List<Menu> getAllTreeNode();
 }

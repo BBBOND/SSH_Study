@@ -31,7 +31,18 @@ public class MenuAction extends BaseAction implements ModelDriven<Menu> {
         this.menuService = menuService;
     }
 
-    public void tree(){
-        writeJson(menuService.getTree(menu.getId()));
+
+    /**
+     * 异步获取
+     */
+    public void getTreeNode(){
+        writeJson(menuService.getTreeNode(menu.getId()));
+    }
+
+    /**
+     * 同步获取
+     */
+    public void getAllTreeNode(){
+        writeJson(menuService.getAllTreeNode());
     }
 }

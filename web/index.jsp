@@ -61,18 +61,20 @@
 <div data-options="region:'west'" style="width:150px;">
     <div class="easyui-panel" data-options="title:'导航导航',fit:true,border:false">
         <div class="easyui-accordion" data-options="fit:true,border:false">
-            <div title="系统菜单" data-options="selected:true">
-                <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath}/menuAction!tree.action'"></ul>
+            <div title="系统菜单（异步）" data-options="selected:true">
+                <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath}/menuAction!getTreeNode.action'"></ul>
             </div>
-            <div title="Title2" style="padding:10px;">
-                content2
+            <div title="系统菜单（同步）">
+                <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath}/menuAction!getAllTreeNode.action',
+                parentField:'pid',lines:true,
+                onLoadSuccess:function(){$(this).tree('collapseAll')}"></ul>
             </div>
         </div>
     </div>
 </div>
 <div data-options="region:'center',title:'Center'">
     <div title="DataGrid" style="padding:5px">
-        <table class="easyui-datagrid" data-options="url:'...',method:'get',singleSelect:true,fit:true,fitColumns:true">
+        <table class="easyui-datagrid" data-options="url:'',method:'get',singleSelect:true,fit:true,fitColumns:true">
             <thead>
             <tr>
                 <th data-options="field:'itemid'" width="80">Item ID</th>

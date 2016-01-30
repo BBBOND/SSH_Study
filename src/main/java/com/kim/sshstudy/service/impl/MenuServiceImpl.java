@@ -30,7 +30,7 @@ public class MenuServiceImpl implements MenuServiceI {
 
     }
 
-    public List<Menu> getTree(String id) {
+    public List<Menu> getTreeNode(String id) {
         List<Menu> menus = new ArrayList<Menu>();
         Map<String, Object> map = new HashMap<String, Object>();
         String hql = null;
@@ -43,7 +43,6 @@ public class MenuServiceImpl implements MenuServiceI {
             hql = "from TMenu t where t.tMenu.id = :id";
         }
         List<TMenu> tMenus = menuDao.find(hql, map);
-        menuDao.flush();
 
         if (tMenus != null && tMenus.size() > 0) {
             for (TMenu t : tMenus) {
@@ -54,6 +53,24 @@ public class MenuServiceImpl implements MenuServiceI {
                     menu.setState("closed");
                 } else {
                     menu.setState("open");
+                }
+                menus.add(menu);
+            }
+        }
+        return menus;
+    }
+
+    public List<Menu> getAllTreeNode() {
+        List<Menu> menus = new ArrayList<Menu>();
+        String hql = "from TMenu t";
+        List<TMenu> tMenus = menuDao.find(hql);
+        if (tMenus != null && tMenus.size() > 0) {
+            for (TMenu t : tMenus) {
+                Menu menu = new Menu();
+                BeanUtils.copyProperties(t, menu);
+                TMenu tm = t.gettMenu();
+                if (tm != null) {
+                    menu.setPid(tm.getId());
                 }
                 menus.add(menu);
             }
