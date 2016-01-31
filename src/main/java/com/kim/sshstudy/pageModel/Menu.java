@@ -1,6 +1,7 @@
 package com.kim.sshstudy.pageModel;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * Created by 伟阳 on 2016/1/28.
@@ -10,11 +11,19 @@ public class Menu implements Serializable {
     private String state;
     private String pid;
     private String pMenuName;
+    private Map<String, Object> attributes;
 
     private String id;
     private String text;
     private String iconCls;
-    private String url;
+
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, Object> attributes) {
+        this.attributes = attributes;
+    }
 
     public String getState() {
         return state;
@@ -62,13 +71,5 @@ public class Menu implements Serializable {
 
     public void setIconCls(String iconCls) {
         this.iconCls = iconCls;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 }

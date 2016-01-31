@@ -103,7 +103,7 @@ public class RepairServiceImpl implements RepairServiceI {
         cdgl.settMenu(xtgl);
         cdgl.setText("菜单管理");
         cdgl.setUrl("");
-        menuDao.saveOrUpdate(yhgl);
+        menuDao.saveOrUpdate(cdgl);
 
         TMenu buggl = new TMenu();
         buggl.setId("buggl");

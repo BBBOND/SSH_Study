@@ -49,40 +49,13 @@
                                 }
                         }*/
     </script>
-    <script type="text/javascript">
-        function addTab(opts){
-                var t = $('#index_centerTabs');
-                if (t.tabs('exists',opts.title)){
-                    t.tabs('select',opts.title);
-                }else{
-                    t.tabs('add',opts);
-                }
-        }
-    </script>
 </head>
 <body class="easyui-layout">
 <div data-options="region:'west'" style="width:150px;">
-    <div class="easyui-panel" data-options="title:'功能导航',fit:true,border:false">
-        <div class="easyui-accordion" data-options="fit:true,border:false">
-            <div title="系统菜单（异步）" data-options="selected:true">
-                <ul class="easyui-tree" data-options="
-                url:'${pageContext.request.contextPath}/menuAction!getTreeNode.action'
-                ,onClick:function(node){
-                    addTab({title:node.text})
-                }"></ul>
-            </div>
-            <div title="系统菜单（同步）">
-                <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath}/menuAction!getAllTreeNode.action',
-                parentField:'pid',lines:true,
-                onLoadSuccess:function(){$(this).tree('collapseAll')}"></ul>
-            </div>
-        </div>
-    </div>
+    <jsp:include page="layout/west.jsp"/>
 </div>
-<div data-options="region:'center',title:'SSH例子'">
-    <div id="index_centerTabs" class="easyui-tabs" data-options="border:false,fit:true">
-        <div title="首页"></div>
-    </div>
+<div data-options="region:'center',title:'SSH例子'" style="overflow: hidden">
+    <jsp:include page="layout/center.jsp"/>
 </div>
 
 <jsp:include page="user/login.jsp"/>
