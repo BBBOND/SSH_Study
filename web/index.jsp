@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 伟阳
-  Date: 2016/1/21
-  Time: 13:01
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
 <html>
@@ -56,13 +49,27 @@
                                 }
                         }*/
     </script>
+    <script type="text/javascript">
+        function addTab(opts){
+                var t = $('#index_centerTabs');
+                if (t.tabs('exists',opts.title)){
+                    t.tabs('select',opts.title);
+                }else{
+                    t.tabs('add',opts);
+                }
+        }
+    </script>
 </head>
 <body class="easyui-layout">
 <div data-options="region:'west'" style="width:150px;">
-    <div class="easyui-panel" data-options="title:'导航导航',fit:true,border:false">
+    <div class="easyui-panel" data-options="title:'功能导航',fit:true,border:false">
         <div class="easyui-accordion" data-options="fit:true,border:false">
             <div title="系统菜单（异步）" data-options="selected:true">
-                <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath}/menuAction!getTreeNode.action'"></ul>
+                <ul class="easyui-tree" data-options="
+                url:'${pageContext.request.contextPath}/menuAction!getTreeNode.action'
+                ,onClick:function(node){
+                    addTab({title:node.text})
+                }"></ul>
             </div>
             <div title="系统菜单（同步）">
                 <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath}/menuAction!getAllTreeNode.action',
@@ -72,20 +79,9 @@
         </div>
     </div>
 </div>
-<div data-options="region:'center',title:'Center'">
-    <div title="DataGrid" style="padding:5px">
-        <table class="easyui-datagrid" data-options="url:'',method:'get',singleSelect:true,fit:true,fitColumns:true">
-            <thead>
-            <tr>
-                <th data-options="field:'itemid'" width="80">Item ID</th>
-                <th data-options="field:'productid'" width="100">Product ID</th>
-                <th data-options="field:'listprice',align:'right'" width="80">List Price</th>
-                <th data-options="field:'unitcost',align:'right'" width="80">Unit Cost</th>
-                <th data-options="field:'attr1'" width="150">Attribute</th>
-                <th data-options="field:'status',align:'center'" width="50">Status</th>
-            </tr>
-            </thead>
-        </table>
+<div data-options="region:'center',title:'SSH例子'">
+    <div id="index_centerTabs" class="easyui-tabs" data-options="border:false,fit:true">
+        <div title="首页"></div>
     </div>
 </div>
 
