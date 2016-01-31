@@ -1,6 +1,7 @@
 package com.kim.sshstudy.service;
 
 import com.kim.sshstudy.model.TUser;
+import com.kim.sshstudy.pageModel.DataGrid;
 import com.kim.sshstudy.pageModel.User;
 
 import java.io.Serializable;
@@ -16,4 +17,6 @@ public interface UserServiceI {
     public Serializable addUser(User user);
 
     public User login(User user);
+
+    public DataGrid dataGrid(User user);
 }

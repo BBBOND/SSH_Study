@@ -8,8 +8,6 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
-
 /**
  * Created by 伟阳 on 2016/1/28.
  */
@@ -35,14 +33,14 @@ public class MenuAction extends BaseAction implements ModelDriven<Menu> {
     /**
      * 异步获取
      */
-    public void getTreeNode(){
+    public void getTreeNode() {
         writeJson(menuService.getTreeNode(menu.getId()));
     }
 
     /**
      * 同步获取
      */
-    public void getAllTreeNode(){
+    public void getAllTreeNode() {
         writeJson(menuService.getAllTreeNode());
     }
 }

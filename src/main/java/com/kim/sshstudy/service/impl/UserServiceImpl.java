@@ -2,6 +2,7 @@ package com.kim.sshstudy.service.impl;
 
 import com.kim.sshstudy.dao.UserDaoI;
 import com.kim.sshstudy.model.TUser;
+import com.kim.sshstudy.pageModel.DataGrid;
 import com.kim.sshstudy.pageModel.User;
 import com.kim.sshstudy.service.UserServiceI;
 import com.kim.sshstudy.utils.Md5AndShaEncrypt;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by 伟阳 on 2016/1/21.
@@ -55,6 +53,7 @@ public class UserServiceImpl implements UserServiceI {
         tuser.setId(UUID.randomUUID().toString());
         tuser.setPwd(Md5AndShaEncrypt.encrypt(user.getPwd()));
         tuser.setCreatedatatime(new Date());
+        tuser.setModifydatatime(new Date());
         return userDao.save(tuser);
     }
 
@@ -75,4 +74,27 @@ public class UserServiceImpl implements UserServiceI {
             return null;
         }
     }
+
+    public DataGrid dataGrid(User user) {
+        DataGrid dataGrid = new DataGrid();
+        String hql = "from TUser t";
+        String totalHql = "select count(*) " + hql;
+        if (user.getSort() != null && !user.getSort().equals("") && user.getOrder() != null && !user.getOrder().equals("")) {
+            hql += " order by " + user.getSort() + " " + user.getOrder();
+        }
+        List<TUser> tUsers = userDao.find(hql, user.getPage(), user.getRows());
+        List<User> users = new ArrayList<User>();
+
+        if (tUsers != null && tUsers.size() > 0) {
+            for (TUser tUser : tUsers) {
+                User u = new User();
+                BeanUtils.copyProperties(tUser, u);
+                users.add(u);
+            }
+        }
+        dataGrid.setTotal(userDao.count(totalHql));
+        dataGrid.setRows(users);
+        return dataGrid;
+    }
+
 }
