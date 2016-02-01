@@ -107,3 +107,20 @@ var easyuiPanelOnMove = function(left,top){
 $.fn.dialog.defaults.onMove = easyuiPanelOnMove;
 $.fn.window.defaults.onMove = easyuiPanelOnMove;
 $.fn.panel.defaults.onMove = easyuiPanelOnMove;
+
+/**
+* 将form表单元素的值序列化为对象
+* @param form
+* @returns {{}}
+*/
+serializeObject = function(form){
+    var o = {};
+    $.each(form.serializeArray(),function(index){
+        if (o[this['name']]) {
+            o[this['name']] = o[this['name']] + "," + this['value'];
+        } else {
+            o[this['name']] = this['value'];
+        }
+    });
+    return o;
+};
