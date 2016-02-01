@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2776920468">
+  <component name="DataSourceManagerImpl" format="xml" hash="1787849862">
     <data-source source="LOCAL" name="MySQL - sshstudy@localhost" uuid="caf57c7a-e331-4536-8278-e496ba22f64e">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -13,6 +13,11 @@
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
       </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="SQL Server (Microsoft) - jiance@211.141.29.123" uuid="7c8391be-a107-42cc-aef7-f1d3bb2558aa">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://211.141.29.123:1433;databaseName=jiance</jdbc-url>
     </data-source>
   </component>
 </project>

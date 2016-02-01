@@ -26,4 +26,7 @@
       <index name="name" unique="true" columns="name"/>
     </table>
   </data-source>
+  <data-source name="SQL Server (Microsoft) - jiance@211.141.29.123" uuid="7c8391be-a107-42cc-aef7-f1d3bb2558aa">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
 </component>
