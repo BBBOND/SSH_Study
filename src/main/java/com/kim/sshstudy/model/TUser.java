@@ -47,6 +47,7 @@ public class TUser implements Serializable {
     }
 
     @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createdatatime", nullable = false)
     public Date getCreatedatatime() {
         return createdatatime;
@@ -57,6 +58,7 @@ public class TUser implements Serializable {
     }
 
     @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modifydatatime", nullable = true)
     public Date getModifydatatime() {
         return modifydatatime;

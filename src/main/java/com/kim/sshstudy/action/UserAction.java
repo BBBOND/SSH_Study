@@ -98,6 +98,20 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
         super.writeJson(json);
     }
 
+    public void add() {
+        Json json = new Json();
+        try {
+            userService.addUser(user);
+            json.setSuccess(true);
+            json.setMsg("添加成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            json.setSuccess(false);
+            json.setMsg("添加失败!");
+        }
+        super.writeJson(json);
+    }
+
     public void login() {
         Json json = new Json();
         try {

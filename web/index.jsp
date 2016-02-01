@@ -7,7 +7,7 @@
     <script type="text/javascript" src="js/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="js/jquery-easyui-1.4.4/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="js/util.js"></script>
-    <link rel="stylesheet" href="js/jquery-easyui-1.4.4/themes/metro/easyui.css" type="text/css">
+    <link rel="stylesheet" href="js/jquery-easyui-1.4.4/themes/gray/easyui.css" type="text/css">
     <link rel="stylesheet" href="js/jquery-easyui-1.4.4/themes/icon.css" type="text/css">
     <script type="text/javascript">
         //使用form表单方式提交

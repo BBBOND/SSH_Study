@@ -20,7 +20,7 @@
                             text:'添加',
                             iconCls:'icon-add',
                             handler:function(){
-
+                                    append();
                                     }
                             },'-',{
                             text:'删除',
@@ -62,6 +62,9 @@
                     $('#admin_yhgl_datagrid').datagrid('load',{});
                     $('#admin_yhgl_layout input').val('');
                     }
+            function append(){
+                    $('#admin_yhgl_addDialog').dialog('open');
+                    }
 </script>
 <div id="admin_yhgl_layout" class="easyui-layout" data-options="fit:true,border:false">
     <div data-options="region:'north',border:false" title="查询条件" style="height: 80px">
@@ -81,6 +84,49 @@
     <div data-options="region:'center',border:false">
         <table id="admin_yhgl_datagrid" class="easyui-datagrid"></table>
     </div>
+</div>
+<div id="admin_yhgl_addDialog" class="easyui-dialog" style="width: 500px;height: 200px;" title="添加用户" align="center"
+     data-options="closed:true,modal:true,buttons:[{
+        text:'增加',
+        handler:function() {
+            $('#admin_yhgl_addForm').form('submit',{
+                url:'${pageContext.request.contextPath}/userAction!add.action',
+                success:function(data){
+                    var obj = jQuery.parseJSON(data);
+                    if(obj.success) {
+                        $('#admin_yhgl_addDialog').dialog('close');
+                    }
+                    $.messager.show({
+                        title:'提示',
+                        msg:obj.msg,
+                        showType:'show'
+                    });
+                }
+            });
+        }
+     }]">
+    <form id="admin_yhgl_addForm" method="post">
+        <table>
+            <tr>
+                <th>编号</th>
+                <td><input name="id"></td>
+                <th>登录名</th>
+                <td><input name="name"></td>
+            </tr>
+            <tr>
+                <th>密码</th>
+                <td><input name="pwd"></td>
+                <th>创建时间</th>
+                <td><input name="createdatetime"></td>
+            </tr>
+            <tr>
+                <th>最后修改时间</th>
+                <td><input name="modifydatetime"></td>
+                <th></th>
+                <td></td>
+            </tr>
+        </table>
+    </form>
 </div>
 <%--
 <div id="admin_yhgl_toolbar">

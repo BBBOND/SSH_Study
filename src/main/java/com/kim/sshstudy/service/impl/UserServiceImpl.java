@@ -77,14 +77,21 @@ public class UserServiceImpl implements UserServiceI {
 
     public DataGrid dataGrid(User user) {
         DataGrid dataGrid = new DataGrid();
-        String hql = "from TUser t";
-        String totalHql = "select count(*) " + hql;
-        if (user.getSort() != null && !user.getSort().equals("") && user.getOrder() != null && !user.getOrder().equals("")) {
-            hql += " order by " + user.getSort() + " " + user.getOrder();
-        }
-        List<TUser> tUsers = userDao.find(hql, user.getPage(), user.getRows());
-        List<User> users = new ArrayList<User>();
+        String hql = "from TUser t ";
+        Map<String, Object> params = new HashMap<String, Object>();
+        hql = addWhere(user, hql, params);
 
+        String totalHql = "select count(*) " + hql;
+        hql = addOrder(user, hql);
+        List<TUser> tUsers = userDao.find(hql, params, user.getPage(), user.getRows());
+        List<User> users = changeModel(tUsers);
+        dataGrid.setTotal(userDao.count(totalHql, params));
+        dataGrid.setRows(users);
+        return dataGrid;
+    }
+
+    private List<User> changeModel(List<TUser> tUsers) {
+        List<User> users = new ArrayList<User>();
         if (tUsers != null && tUsers.size() > 0) {
             for (TUser tUser : tUsers) {
                 User u = new User();
@@ -92,9 +99,23 @@ public class UserServiceImpl implements UserServiceI {
                 users.add(u);
             }
         }
-        dataGrid.setTotal(userDao.count(totalHql));
-        dataGrid.setRows(users);
-        return dataGrid;
+        return users;
     }
+
+    private String addOrder(User user, String hql) {
+        if (user.getSort() != null && !user.getSort().equals("") && user.getOrder() != null && !user.getOrder().equals("")) {
+            hql += " order by " + user.getSort() + " " + user.getOrder();
+        }
+        return hql;
+    }
+
+    private String addWhere(User user, String hql, Map<String, Object> params) {
+        if (user.getName() != null && !user.getName().trim().equals("")) {
+            hql += "where t.name like :name";
+            params.put("name", "%%" + user.getName().trim() + "%%");
+        }
+        return hql;
+    }
+
 
 }
