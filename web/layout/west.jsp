@@ -1,4 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script type="text/javascript">
+    function addTab(opts){
+            var t = $('#admin_center_centerTabs');
+            if (t.tabs('exists',opts.title)){
+                    t.tabs('select',opts.title);
+                    }else{
+                    t.tabs('add',opts);
+                    }
+            }
+</script>
 <div class="easyui-panel" data-options="title:'功能导航',fit:true,border:false">
     <div class="easyui-accordion" data-options="fit:true,border:false">
         <div title="系统菜单（异步）" data-options="selected:true">
@@ -24,6 +34,7 @@
                 lines:true,
                 onLoadSuccess:function(){$(this).tree('collapseAll')},
                 onClick:function(node){
+                    console.info(node.attributes.url);
                     if(node.attributes.url){
                         var url = '${pageContext.request.contextPath}' + node.attributes.url;
                         addTab({title:node.text,href:url,closable:true});

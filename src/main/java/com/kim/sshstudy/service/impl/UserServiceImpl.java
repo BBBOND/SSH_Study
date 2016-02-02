@@ -45,16 +45,18 @@ public class UserServiceImpl implements UserServiceI {
         return userDao.save(tuser);
     }
 
-    public Serializable addUser(User user) {
+    public User addUser(User user) {
         TUser tuser = new TUser();
-        BeanUtils.copyProperties(user, tuser, new String[]{"id", "pwd", "createdatatime"});//字符数组是不复制的项
+        BeanUtils.copyProperties(user, tuser, new String[]{"id", "pwd"});//字符数组是不复制的项
 //        tuser.setName(user.getName());
 //        tuser.setPwd(user.getPwd());
         tuser.setId(UUID.randomUUID().toString());
         tuser.setPwd(Md5AndShaEncrypt.encrypt(user.getPwd()));
         tuser.setCreatedatatime(new Date());
         tuser.setModifydatatime(new Date());
-        return userDao.save(tuser);
+        userDao.save(tuser);
+        BeanUtils.copyProperties(tuser,user);
+        return user;
     }
 
     public User login(User user) {

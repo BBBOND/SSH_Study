@@ -64,6 +64,7 @@
                     }
             function append(){
                     $('#admin_yhgl_addDialog').dialog('open');
+                    $('#admin_yhgl_addForm input[name=name]').focus();
                     }
 </script>
 <div id="admin_yhgl_layout" class="easyui-layout" data-options="fit:true,border:false">
@@ -93,8 +94,11 @@
                 url:'${pageContext.request.contextPath}/userAction!add.action',
                 success:function(data){
                     var obj = jQuery.parseJSON(data);
+                    console.info(obj.object);
                     if(obj.success) {
                         $('#admin_yhgl_addDialog').dialog('close');
+                        $('#admin_yhgl_addForm input').val('');
+                        $('#admin_yhgl_datagrid').datagrid('appendRow',obj.object);
                     }
                     $.messager.show({
                         title:'提示',
@@ -109,19 +113,19 @@
         <table>
             <tr>
                 <th>编号</th>
-                <td><input name="id"></td>
+                <td><input name="id" readonly="readonly"></td>
                 <th>登录名</th>
-                <td><input name="name"></td>
+                <td><input name="name" autofocus class="easyui-validatebox" data-options="required:true"></td>
             </tr>
             <tr>
                 <th>密码</th>
-                <td><input name="pwd"></td>
+                <td><input name="pwd" type="password" class="easyui-validatebox" data-options="required:true"></td>
                 <th>创建时间</th>
-                <td><input name="createdatetime"></td>
+                <td><input name="createdatetime" readonly="readonly"></td>
             </tr>
             <tr>
                 <th>最后修改时间</th>
-                <td><input name="modifydatetime"></td>
+                <td><input name="modifydatetime" readonly="readonly"></td>
                 <th></th>
                 <td></td>
             </tr>

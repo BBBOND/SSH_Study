@@ -14,7 +14,7 @@ public interface UserServiceI {
 
     public Serializable save(TUser tuser);
 
-    public Serializable addUser(User user);
+    public User addUser(User user);
 
     public User login(User user);
 
