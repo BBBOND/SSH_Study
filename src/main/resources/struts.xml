@@ -31,7 +31,16 @@
     <constant name="struts.dispatcher.parametersWorkaround" value="true"/>
 
     <package name="basePackage" extends="struts-default">
-
+        <interceptors>
+            <!--字符拦截器-->
+            <interceptor name="encodingInterceptor" class="com.kim.sshstudy.interceptor.EncodingInterceptor"/>
+            <interceptor-stack name="encodingStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="encodingInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <!--拦截器栈-->
+        <default-interceptor-ref name="encodingStack"></default-interceptor-ref>
     </package>
 
 
