@@ -71,6 +71,9 @@ public class MenuServiceImpl implements MenuServiceI {
             for (TMenu t : tMenus) {
                 Menu menu = new Menu();
                 BeanUtils.copyProperties(t, menu);
+                Map<String, Object> attributes = new HashMap<String, Object>();
+                attributes.put("url", t.getUrl());
+                menu.setAttributes(attributes);
                 TMenu tm = t.gettMenu();
                 if (tm != null) {
                     menu.setPid(tm.getId());
