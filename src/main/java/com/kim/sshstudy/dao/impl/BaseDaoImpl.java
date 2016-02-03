@@ -50,6 +50,10 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
         getCurrentSession().saveOrUpdate(t);
     }
 
+    public T get(Class<T> c, Serializable id) {
+        return (T) getCurrentSession().get(c, id);
+    }
+
     public T get(String hql) {
         Query query = getCurrentSession().createQuery(hql);
         List<T> list = query.list();

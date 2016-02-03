@@ -14,6 +14,8 @@
                     pageList:[5,10,20,30,50,100],
                     sortName:"name",
                     sortOrder:"asc",
+                    checkOnSelect:true,
+                    selectOnCheck:true,
                     //也可使用这种方法
                     //toolbar:'#admin_yhgl_toolbar',
                     toolbar:[{
@@ -26,7 +28,7 @@
                             text:'删除',
                             iconCls:'icon-remove',
                             handler:function(){
-
+                                    remove();
                                     }
                             },'-',{
                             text:'修改',
@@ -36,12 +38,12 @@
                                     }
                             }],
                     columns:[[
-                            {field:'id',title:'编号',width:150,hidden:true,sortable:true},
+                            {field:'id',title:'编号',width:150,sortable:true,checkbox:true},
                             {field:'name',title:'用户名',width:70,sortable:true,formatter:function(value,row,index){
                                     return '<span title="'+value+'">'+value+'</span>';
                                     }},
                             {field:'pwd',title:'密码',width:100,sortable:true,formatter:function(value,row,index){
-                                    return '<span title="'+value+'">'+value+'</span>';
+                                    return '*******';
                                     }},
                             {field:'createdatatime',title:'创建时间',width:80,sortable:true,formatter:function(value,row,index){
                                     return '<span title="'+value+'">'+value+'</span>';
@@ -65,6 +67,39 @@
             function append(){
                     $('#admin_yhgl_addDialog').dialog('open');
                     $('#admin_yhgl_addForm input[name=name]').focus();
+                    }
+            function remove(){
+                    var rows = $('#admin_yhgl_datagrid').datagrid('getChecked');
+                    //$('#admin_yhgl_datagrid').datagrid('getSelected');
+                    //$('#admin_yhgl_datagrid').datagrid('getSelections');
+                    var ids = [];
+                    if (rows.length>0){
+                            for (var i = 0; i < rows.length; i++){
+                                    ids.push(rows[i].id);
+                                    }
+                            $.ajax({
+                                    url:'${pageContext.request.contextPath}/userAction!remove.action',
+                                    data:{ids : ids.join(',')},
+                                    dataType:'json',
+                                    success:function(data){
+                                            if (data.success){
+                                                    $('#admin_yhgl_datagrid').datagrid('load');
+                                                    $('#admin_yhgl_datagrid').datagrid('unselectAll');
+                                                    }
+                                            $.messager.show({
+                                                    title:'提示',
+                                                    msg:data.msg,
+                                                    showType:'show'
+                                                    });
+                                            }
+                                    });
+                            }else{
+                            $.messager.show({
+                                    title:'提示',
+                                    msg:'请勾选要删除的数据！',
+                                    showType:'show'
+                                    });
+                            }
                     }
 </script>
 <div id="admin_yhgl_layout" class="easyui-layout" data-options="fit:true,border:false">

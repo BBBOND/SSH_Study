@@ -13,6 +13,7 @@ public class User implements Serializable {
     private int rows;
     private String sort;
     private String order;
+    private String ids;
 
     private String id;
     private String name;
@@ -45,6 +46,14 @@ public class User implements Serializable {
 
     public void setOrder(String order) {
         this.order = order;
+    }
+
+    public String getIds() {
+        return ids;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
     public String getSort() {

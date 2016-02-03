@@ -19,4 +19,6 @@ public interface UserServiceI {
     public User login(User user);
 
     public DataGrid dataGrid(User user);
+
+    public void remove(String ids);
 }

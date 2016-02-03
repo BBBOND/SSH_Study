@@ -133,6 +133,21 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
         }
     }
 
+    public void remove() {
+        Json json = new Json();
+        try {
+            userService.remove(user.getIds());
+            json.setSuccess(true);
+            json.setMsg("删除成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            json.setSuccess(false);
+            json.setMsg("删除失败,服务器内部错误!");
+        } finally {
+            super.writeJson(json);
+        }
+    }
+
     public void datagrid() {
         super.writeJson(userService.dataGrid(user));
     }

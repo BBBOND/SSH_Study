@@ -16,6 +16,21 @@ public class TUser implements Serializable {
     private Date createdatatime;
     private Date modifydatatime;
 
+    public TUser() {
+    }
+
+    public TUser(String id) {
+        this.id = id;
+    }
+
+    public TUser(String id, String name, String pwd, Date createdatatime, Date modifydatatime) {
+        this.id = id;
+        this.name = name;
+        this.pwd = pwd;
+        this.createdatatime = createdatatime;
+        this.modifydatatime = modifydatatime;
+    }
+
     @Id
     @Column(name = "id", nullable = false, length = 36)
     public String getId() {

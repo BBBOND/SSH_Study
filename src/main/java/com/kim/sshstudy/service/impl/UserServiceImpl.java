@@ -92,6 +92,13 @@ public class UserServiceImpl implements UserServiceI {
         return dataGrid;
     }
 
+    public void remove(String ids) {
+        for (String id : ids.split(",")){
+            TUser tUser = userDao.get(TUser.class,id);
+            userDao.delete(tUser);
+        }
+    }
+
     private List<User> changeModel(List<TUser> tUsers) {
         List<User> users = new ArrayList<User>();
         if (tUsers != null && tUsers.size() > 0) {

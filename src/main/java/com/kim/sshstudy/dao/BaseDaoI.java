@@ -17,6 +17,8 @@ public interface BaseDaoI<T> {
 
     public void saveOrUpdate(T t);
 
+    public T get(Class<T> c, Serializable id);
+
     public T get(String hql);
 
 //    public T get(String hql, Object[] params);
