@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public class TestHibernate {
         tuser.setId(UUID.randomUUID().toString());
         tuser.setName("jwy");
         tuser.setPwd("123456");
-        tuser.setCreatedatatime(new Date());
+        tuser.setCreatedatetime(new Timestamp(System.currentTimeMillis()));
         userService.save(tuser);
     }
 }

@@ -19,9 +19,9 @@ public class User implements Serializable {
     private String name;
     private String pwd;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date createdatatime;
+    private Date createdatetime;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date modifydatatime;
+    private Date modifydatetime;
 
 
     public int getPage() {
@@ -88,19 +88,19 @@ public class User implements Serializable {
         this.pwd = pwd;
     }
 
-    public Date getCreatedatatime() {
-        return createdatatime;
+    public Date getCreatedatetime() {
+        return createdatetime;
     }
 
-    public void setCreatedatatime(Date createdatatime) {
-        this.createdatatime = createdatatime;
+    public void setCreatedatetime(Date createdatetime) {
+        this.createdatetime = createdatetime;
     }
 
-    public Date getModifydatatime() {
-        return modifydatatime;
+    public Date getModifydatetime() {
+        return modifydatetime;
     }
 
-    public void setModifydatatime(Date modifydatatime) {
-        this.modifydatatime = modifydatatime;
+    public void setModifydatetime(Date modifydatetime) {
+        this.modifydatetime = modifydatetime;
     }
 }

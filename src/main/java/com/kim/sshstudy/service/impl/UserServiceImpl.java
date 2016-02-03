@@ -52,8 +52,8 @@ public class UserServiceImpl implements UserServiceI {
 //        tuser.setPwd(user.getPwd());
         tuser.setId(UUID.randomUUID().toString());
         tuser.setPwd(Md5AndShaEncrypt.encrypt(user.getPwd()));
-        tuser.setCreatedatatime(new Date());
-        tuser.setModifydatatime(new Date());
+        tuser.setCreatedatetime(new Date());
+        tuser.setModifydatetime(new Date());
         userDao.save(tuser);
         BeanUtils.copyProperties(tuser, user);
         return user;
@@ -107,6 +107,11 @@ public class UserServiceImpl implements UserServiceI {
         }
         hql += ")";
         userDao.executeHql(hql);
+    }
+
+    public void edit(User user) {
+        TUser tUser = userDao.get(TUser.class,user.getId());
+        BeanUtils.copyProperties(user,tUser,new String[]{"id","pwd"});
     }
 
     private List<User> changeModel(List<TUser> tUsers) {

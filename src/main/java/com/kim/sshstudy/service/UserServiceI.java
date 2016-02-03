@@ -21,4 +21,6 @@ public interface UserServiceI {
     public DataGrid dataGrid(User user);
 
     public void remove(String ids);
+
+    public void edit(User user);
 }

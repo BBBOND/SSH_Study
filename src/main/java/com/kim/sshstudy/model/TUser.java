@@ -13,8 +13,8 @@ public class TUser implements Serializable {
     private String id;
     private String name;
     private String pwd;
-    private Date createdatatime;
-    private Date modifydatatime;
+    private Date createdatetime;
+    private Date modifydatetime;
 
     public TUser() {
     }
@@ -23,12 +23,12 @@ public class TUser implements Serializable {
         this.id = id;
     }
 
-    public TUser(String id, String name, String pwd, Date createdatatime, Date modifydatatime) {
+    public TUser(String id, String name, String pwd, Date createdatetime, Date modifydatetime) {
         this.id = id;
         this.name = name;
         this.pwd = pwd;
-        this.createdatatime = createdatatime;
-        this.modifydatatime = modifydatatime;
+        this.createdatetime = createdatetime;
+        this.modifydatetime = modifydatetime;
     }
 
     @Id
@@ -63,24 +63,24 @@ public class TUser implements Serializable {
 
     @Basic
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdatatime", nullable = false)
-    public Date getCreatedatatime() {
-        return createdatatime;
+    @Column(name = "createdatetime", nullable = false)
+    public Date getCreatedatetime() {
+        return createdatetime;
     }
 
-    public void setCreatedatatime(Date createdatatime) {
-        this.createdatatime = createdatatime;
+    public void setCreatedatetime(Date createdatetime) {
+        this.createdatetime = createdatetime;
     }
 
     @Basic
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modifydatatime", nullable = true)
-    public Date getModifydatatime() {
-        return modifydatatime;
+    @Column(name = "modifydatetime", nullable = false)
+    public Date getModifydatetime() {
+        return modifydatetime;
     }
 
-    public void setModifydatatime(Date modifydatatime) {
-        this.modifydatatime = modifydatatime;
+    public void setModifydatetime(Date modifydatetime) {
+        this.modifydatetime = modifydatetime;
     }
 
     @Override
@@ -93,8 +93,8 @@ public class TUser implements Serializable {
         if (id != null ? !id.equals(tUser.id) : tUser.id != null) return false;
         if (name != null ? !name.equals(tUser.name) : tUser.name != null) return false;
         if (pwd != null ? !pwd.equals(tUser.pwd) : tUser.pwd != null) return false;
-        if (createdatatime != null ? !createdatatime.equals(tUser.createdatatime) : tUser.createdatatime != null) return false;
-        if (modifydatatime != null ? !modifydatatime.equals(tUser.modifydatatime) : tUser.modifydatatime != null) return false;
+        if (createdatetime != null ? !createdatetime.equals(tUser.createdatetime) : tUser.createdatetime != null) return false;
+        if (modifydatetime != null ? !modifydatetime.equals(tUser.modifydatetime) : tUser.modifydatetime != null) return false;
 
         return true;
     }
@@ -104,8 +104,8 @@ public class TUser implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (pwd != null ? pwd.hashCode() : 0);
-        result = 31 * result + (createdatatime != null ? createdatatime.hashCode() : 0);
-        result = 31 * result + (modifydatatime != null ? modifydatatime.hashCode() : 0);
+        result = 31 * result + (createdatetime != null ? createdatetime.hashCode() : 0);
+        result = 31 * result + (modifydatetime != null ? modifydatetime.hashCode() : 0);
         return result;
     }
 }

@@ -34,7 +34,7 @@
                             text:'修改',
                             iconCls:'icon-edit',
                             handler:function(){
-
+                                    edit();
                                     }
                             }],
                     columns:[[
@@ -45,10 +45,10 @@
                             {field:'pwd',title:'密码',width:100,sortable:true,formatter:function(value,row,index){
                                     return '*******';
                                     }},
-                            {field:'createdatatime',title:'创建时间',width:80,sortable:true,formatter:function(value,row,index){
+                            {field:'createdatetime',title:'创建时间',width:80,sortable:true,formatter:function(value,row,index){
                                     return '<span title="'+value+'">'+value+'</span>';
                                     }},
-                            {field:'modifydatatime',title:'最后修改时间',width:80,sortable:true,formatter:function(value,row,index){
+                            {field:'modifydatetime',title:'最后修改时间',width:80,sortable:true,formatter:function(value,row,index){
                                     return '<span title="'+value+'">'+value+'</span>';
                                     }}
                             ]]
@@ -106,6 +106,46 @@
                                     });
                             }
                     }
+            function edit(){
+                    var rows = $('#admin_yhgl_datagrid').datagrid('getChecked');
+                    if (rows.length == 1){
+                            var d = $('<div/>').dialog({
+                                    width:505,
+                                    height:200,
+                                    href:'${pageContext.request.contextPath}/admin/yhglEdit.jsp',
+                                    modal:true,
+                                    title:'编辑用户',
+                                    buttons:[{
+                                            text:'编辑',
+                                            handler:function(){
+                                                    $('#admin_yhglEdit_editForm').form('submit',{
+                                                            url:'${pageContext.request.contextPath}/userAction!edit.action',
+                                                            success:function(data){
+                                                                    var obj = jQuery.parseJSON(data);
+                                                                    if (obj.success){
+                                                                            d.dialog('close');
+                                                                            }
+                                                                    $.messager.show({
+                                                                            title:'提示',
+                                                                            msg:obj.msg
+                                                                            });
+                                                                    }
+                                                            });
+                                                    }
+                                            }],
+                                    onClose:function(){
+                                            $(this).dialog('destroy');
+                                            },
+                                    onLoad:function(){
+                                            $('#admin_yhglEdit_editForm').form('load',rows[0]);
+                                            }
+                                    });
+                            }else if (rows.length <= 0){
+                            $.messager.alert('提示','请选择一条记录进行编辑！');
+                            }else{
+                            $.messager.alert('提示','最多只能选择一条记录进行编辑！');
+                            }
+                    }
 </script>
 <div id="admin_yhgl_layout" class="easyui-layout" data-options="fit:true,border:false">
     <div data-options="region:'north',border:false" title="查询条件" style="height: 80px">
@@ -134,7 +174,6 @@
                 url:'${pageContext.request.contextPath}/userAction!add.action',
                 success:function(data){
                     var obj = jQuery.parseJSON(data);
-                    console.info(obj.object);
                     if(obj.success) {
                         $('#admin_yhgl_addDialog').dialog('close');
                         $('#admin_yhgl_addForm input').val('');
@@ -152,22 +191,12 @@
     <form id="admin_yhgl_addForm" method="post">
         <table>
             <tr>
-                <th>编号</th>
-                <td><input name="id" readonly="readonly"></td>
                 <th>登录名</th>
                 <td><input name="name" autofocus class="easyui-validatebox" data-options="required:true"></td>
             </tr>
             <tr>
                 <th>密码</th>
                 <td><input name="pwd" type="password" class="easyui-validatebox" data-options="required:true"></td>
-                <th>创建时间</th>
-                <td><input name="createdatetime" readonly="readonly"></td>
-            </tr>
-            <tr>
-                <th>最后修改时间</th>
-                <td><input name="modifydatetime" readonly="readonly"></td>
-                <th></th>
-                <td></td>
             </tr>
         </table>
     </form>

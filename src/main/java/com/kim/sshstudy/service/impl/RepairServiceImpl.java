@@ -170,8 +170,8 @@ public class RepairServiceImpl implements RepairServiceI {
         admin.setId("0");
         admin.setName("admin");
         admin.setPwd(Md5AndShaEncrypt.encrypt("admin"));
-        admin.setCreatedatatime(new Date());
-        admin.setModifydatatime(new Date());
+        admin.setCreatedatetime(new Date());
+        admin.setModifydatetime(new Date());
         userDao.saveOrUpdate(admin);
         userDao.flush();
     }

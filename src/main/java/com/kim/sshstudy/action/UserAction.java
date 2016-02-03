@@ -77,7 +77,7 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
         tuser.setId(UUID.randomUUID().toString());
         tuser.setName("cy");
         tuser.setPwd("123456");
-        tuser.setCreatedatatime(new Date());
+        tuser.setCreatedatetime(new Date());
         userService.save(tuser);
     }
 
@@ -143,6 +143,21 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
             e.printStackTrace();
             json.setSuccess(false);
             json.setMsg("删除失败,服务器内部错误!");
+        } finally {
+            super.writeJson(json);
+        }
+    }
+
+    public void edit(){
+        Json json = new Json();
+        try {
+            userService.edit(user);
+            json.setSuccess(true);
+            json.setMsg("修改成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            json.setSuccess(false);
+            json.setMsg("修改失败,服务器内部错误!");
         } finally {
             super.writeJson(json);
         }

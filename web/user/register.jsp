@@ -30,7 +30,7 @@
             });
 
 </script>
-<div id="user_register_registerDialog" class="easyui-dialog" title="注册" style="width:240px;height:180px;padding:10px"
+<div id="user_register_registerDialog" class="easyui-dialog" title="注册" style="width:290px;height:180px;padding:10px" align="center"
      data-options="
                 modal:true,
                 closed:true,

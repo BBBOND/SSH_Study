@@ -30,7 +30,7 @@
             });
 
 </script>
-<div id="user_login_loginDialog" class="easyui-dialog" title="登陆" style="width:230px;height:150px;padding:10px"
+<div id="user_login_loginDialog" class="easyui-dialog" title="登陆" style="width:280px;height:150px;padding:10px" align="center"
      data-options="
                 modal:true,
                 closable:false,
