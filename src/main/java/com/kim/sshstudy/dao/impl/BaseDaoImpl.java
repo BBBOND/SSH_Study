@@ -172,4 +172,9 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
     public void flush() {
         getCurrentSession().flush();
     }
+
+    public int executeHql(String hql) {
+        Query query = getCurrentSession().createQuery(hql);
+        return query.executeUpdate();
+    }
 }

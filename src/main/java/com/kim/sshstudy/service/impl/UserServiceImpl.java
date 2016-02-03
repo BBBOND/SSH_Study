@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserServiceI {
         tuser.setCreatedatatime(new Date());
         tuser.setModifydatatime(new Date());
         userDao.save(tuser);
-        BeanUtils.copyProperties(tuser,user);
+        BeanUtils.copyProperties(tuser, user);
         return user;
     }
 
@@ -93,10 +93,20 @@ public class UserServiceImpl implements UserServiceI {
     }
 
     public void remove(String ids) {
-        for (String id : ids.split(",")){
-            TUser tUser = userDao.get(TUser.class,id);
-            userDao.delete(tUser);
+//        for (String id : ids.split(",")){
+//            TUser tUser = userDao.get(TUser.class,id);
+//            userDao.delete(tUser);
+//        }
+        String[] idStr = ids.split(",");
+        String hql = "delete TUser t where t.id in (";
+        for (int i = 0; i < idStr.length; i++) {
+            if (i > 0) {
+                hql += ",";
+            }
+            hql += "'" + idStr[i] + "'";
         }
+        hql += ")";
+        userDao.executeHql(hql);
     }
 
     private List<User> changeModel(List<TUser> tUsers) {

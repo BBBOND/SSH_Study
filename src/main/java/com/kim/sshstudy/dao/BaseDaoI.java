@@ -39,4 +39,6 @@ public interface BaseDaoI<T> {
 
     public void flush();
 
+    public int executeHql(String hql);
+
 }

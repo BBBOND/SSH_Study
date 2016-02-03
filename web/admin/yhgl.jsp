@@ -74,25 +74,30 @@
                     //$('#admin_yhgl_datagrid').datagrid('getSelections');
                     var ids = [];
                     if (rows.length>0){
-                            for (var i = 0; i < rows.length; i++){
-                                    ids.push(rows[i].id);
-                                    }
-                            $.ajax({
-                                    url:'${pageContext.request.contextPath}/userAction!remove.action',
-                                    data:{ids : ids.join(',')},
-                                    dataType:'json',
-                                    success:function(data){
-                                            if (data.success){
-                                                    $('#admin_yhgl_datagrid').datagrid('load');
-                                                    $('#admin_yhgl_datagrid').datagrid('unselectAll');
+                            $.messager.confirm("提示","确定删除所选项目？",function(r){
+                                    if (r){
+                                            for (var i = 0; i < rows.length; i++){
+                                                    ids.push(rows[i].id);
                                                     }
-                                            $.messager.show({
-                                                    title:'提示',
-                                                    msg:data.msg,
-                                                    showType:'show'
+                                            $.ajax({
+                                                    url:'${pageContext.request.contextPath}/userAction!remove.action',
+                                                    data:{ids : ids.join(',')},
+                                                    dataType:'json',
+                                                    success:function(data){
+                                                            if (data.success){
+                                                                    $('#admin_yhgl_datagrid').datagrid('load');
+                                                                    $('#admin_yhgl_datagrid').datagrid('unselectAll');
+                                                                    }
+                                                            $.messager.show({
+                                                                    title:'提示',
+                                                                    msg:data.msg,
+                                                                    showType:'show'
+                                                                    });
+                                                            }
                                                     });
                                             }
                                     });
+
                             }else{
                             $.messager.show({
                                     title:'提示',
