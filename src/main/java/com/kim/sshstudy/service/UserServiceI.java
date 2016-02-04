@@ -22,5 +22,5 @@ public interface UserServiceI {
 
     public void remove(String ids);
 
-    public void edit(User user);
+    public User edit(User user);
 }

@@ -109,9 +109,10 @@ public class UserServiceImpl implements UserServiceI {
         userDao.executeHql(hql);
     }
 
-    public void edit(User user) {
+    public User edit(User user) {
         TUser tUser = userDao.get(TUser.class,user.getId());
         BeanUtils.copyProperties(user,tUser,new String[]{"id","pwd"});
+        return user;
     }
 
     private List<User> changeModel(List<TUser> tUsers) {

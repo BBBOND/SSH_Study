@@ -124,6 +124,10 @@
                                                                     var obj = jQuery.parseJSON(data);
                                                                     if (obj.success){
                                                                             d.dialog('close');
+                                                                            $('#admin_yhgl_datagrid').datagrid('updateRow',{
+                                                                                    index:$('#admin_yhgl_datagrid').datagrid('getRowIndex',rows[0].id),
+                                                                                    row:obj.object
+                                                                                    });
                                                                             }
                                                                     $.messager.show({
                                                                             title:'提示',
