@@ -1,0 +1,36 @@
+18:11:03,743 INFO  [org.springframework.context.support.ClassPathXmlApplicationContext] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@880ec60: startup date [Sat Jan 23 18:11:03 CST 2016]; root of context hierarchy
+18:11:03,842 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [applicationContext.xml]
+18:11:04,201 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [spring-hibernate.xml]
+18:11:04,573 INFO  [org.springframework.context.support.PropertySourcesPlaceholderConfigurer] Loading properties file from class path resource [config.properties]
+18:11:04,977 ERROR [com.alibaba.druid.pool.DruidAbstractDataSource] maxIdle is deprecated
+18:11:05,300 INFO  [com.alibaba.druid.pool.DruidDataSource] {dataSource-1} inited
+18:11:06,389 INFO  [org.hibernate.annotations.common.Version] HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+18:11:06,394 INFO  [org.hibernate.Version] HHH000412: Hibernate Core {4.2.2.Final}
+18:11:06,396 INFO  [org.hibernate.cfg.Environment] HHH000206: hibernate.properties not found
+18:11:06,397 INFO  [org.hibernate.cfg.Environment] HHH000021: Bytecode provider name : javassist
+18:11:06,794 INFO  [org.hibernate.dialect.Dialect] HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+18:11:06,919 INFO  [org.hibernate.engine.transaction.internal.TransactionFactoryInitiator] HHH000399: Using default transaction strategy (direct JDBC transactions)
+18:11:06,924 INFO  [org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory] HHH000397: Using ASTQueryTranslatorFactory
+18:11:07,269 INFO  [org.hibernate.tool.hbm2ddl.SchemaUpdate] HHH000228: Running hbm2ddl schema update
+18:11:07,269 INFO  [org.hibernate.tool.hbm2ddl.SchemaUpdate] HHH000102: Fetching database metadata
+18:11:07,272 INFO  [org.hibernate.tool.hbm2ddl.SchemaUpdate] HHH000396: Updating schema
+18:11:07,307 INFO  [org.hibernate.tool.hbm2ddl.TableMetadata] HHH000261: Table found: sshstudy.tuser
+18:11:07,307 INFO  [org.hibernate.tool.hbm2ddl.TableMetadata] HHH000037: Columns: [createdatatime, name, id, pwd, modifydatatime]
+18:11:07,307 INFO  [org.hibernate.tool.hbm2ddl.TableMetadata] HHH000108: Foreign keys: []
+18:11:07,307 INFO  [org.hibernate.tool.hbm2ddl.TableMetadata] HHH000126: Indexes: [name, primary]
+18:11:07,308 INFO  [org.hibernate.tool.hbm2ddl.SchemaUpdate] HHH000232: Schema update complete
+18:11:07,407 INFO  [org.springframework.orm.hibernate4.HibernateTransactionManager] Using DataSource [{
+	CreateTime:"2016-01-23 18:11:04",
+	ActiveCount:0,
+	PoolingCount:1,
+	CreateCount:1,
+	DestroyCount:0,
+	CloseCount:2,
+	ConnectCount:2,
+	Connections:[
+		{ID:224060798, ConnectTime:"2016-01-23 18:11:06", UseCount:2, LastActiveTime:"2016-01-23 18:11:07"}
+	]
+}] of Hibernate SessionFactory for HibernateTransactionManager
+18:11:07,737 WARN  [org.hibernate.engine.jdbc.spi.SqlExceptionHelper] SQL Error: 1062, SQLState: 23000
+18:11:07,737 ERROR [org.hibernate.engine.jdbc.spi.SqlExceptionHelper] Duplicate entry 'jwy' for key 2
+18:11:07,784 INFO  [org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl] HHH000010: On release of batch it still contained JDBC statements
